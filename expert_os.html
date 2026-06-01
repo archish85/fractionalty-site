@@ -8,19 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* ── OS-specific variables (additive to styles.css) ── */
     :root {
-      --bg: #f8f8f6;
-      --surface: #ffffff;
-      --text: #180A4B;
-      --text-soft: rgba(24,10,75,0.60);
       --text-xsoft: rgba(24,10,75,0.35);
-      --accent: #180A4B;
-      --accent-light: #2d1a6b;
-      --accent-muted: rgba(24,10,75,0.06);
-      --border: rgba(24,10,75,0.11);
+      --border: var(--line);
       --border-strong: rgba(24,10,75,0.18);
       --success: #10B981;
       --success-bg: rgba(16,185,129,0.07);
@@ -31,49 +24,9 @@
       --purple: #6B4FBF;
       --purple-bg: rgba(107,79,191,0.07);
       --purple-border: rgba(107,79,191,0.18);
-      --shadow: 0 4px 24px rgba(24,10,75,0.07);
-      --shadow-lg: 0 16px 56px rgba(24,10,75,0.12);
       --radius: 16px;
       --radius-sm: 10px;
     }
-
-    body {
-      font-family: 'Manrope', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button { font-family: 'Manrope', sans-serif; }
-
-    /* ── Topbar ── */
-    .topbar {
-      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
-      width: min(calc(100% - 48px), 1200px);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 22px 0; z-index: 100; transition: all 0.3s ease;
-    }
-    .topbar.is-scrolled {
-      background: rgba(248,248,246,0.92);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 28px;
-      width: 100%; left: 0; transform: none;
-      border-radius: 0;
-    }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
-    .brand-mark { width: 28px; height: 28px; border-radius: 6px; background: var(--accent); flex-shrink: 0; }
-    .topbar-nav { display: flex; align-items: center; gap: 8px; }
-    .topbar-link { padding: 9px 16px; font-size: 0.88rem; font-weight: 500; color: var(--text-soft); border-radius: 8px; transition: all 0.2s; }
-    .topbar-link:hover { color: var(--text); background: var(--accent-muted); }
-    .topbar-cta {
-      background: var(--accent); color: white; padding: 10px 22px;
-      border-radius: 99px; font-size: 0.88rem; font-weight: 700;
-      transition: all 0.2s; border: none; cursor: pointer;
-    }
-    .topbar-cta:hover { background: var(--accent-light); }
 
     /* ── Hero ── */
     .hero-os {
@@ -112,18 +65,6 @@
       max-width: 580px; margin: 0 auto 40px;
     }
     .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .btn-hero-primary {
-      background: var(--accent); color: white; padding: 15px 34px; border-radius: 99px;
-      font-size: 1rem; font-weight: 700; border: none; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 9px; transition: all 0.22s;
-    }
-    .btn-hero-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(24,10,75,0.22); }
-    .btn-hero-secondary {
-      background: transparent; color: var(--text); padding: 15px 34px; border-radius: 99px;
-      font-size: 1rem; font-weight: 600; border: 2px solid var(--border-strong); cursor: pointer;
-      transition: all 0.22s; display: inline-flex; align-items: center;
-    }
-    .btn-hero-secondary:hover { border-color: var(--accent); }
 
     .hero-os-tags {
       display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 52px;
@@ -586,22 +527,9 @@
     .final-cta h2 { font-size: clamp(1.9rem, 4.5vw, 3.2rem); font-weight: 800; color: white; letter-spacing: -0.03em; line-height: 1.15; max-width: 660px; margin: 0 auto 18px; }
     .final-cta p { font-size: 1.05rem; color: rgba(255,255,255,0.68); margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; }
     .final-cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .cta-white-btn {
-      background: white; color: var(--accent); padding: 15px 36px; border-radius: 99px;
-      font-size: 1rem; font-weight: 700; border: none; cursor: pointer; transition: all 0.22s;
-    }
-    .cta-white-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,0,0,0.22); }
-    .cta-outline-btn {
-      background: transparent; color: white; padding: 15px 36px; border-radius: 99px;
-      font-size: 1rem; font-weight: 600; border: 2px solid rgba(255,255,255,0.28); cursor: pointer;
-      transition: all 0.22s; display: inline-flex; align-items: center;
-    }
-    .cta-outline-btn:hover { border-color: white; }
 
     /* Mobile */
     @media (max-width: 680px) {
-      .topbar { padding: 18px 0; }
-      .topbar-nav .topbar-link { display: none; }
       .os-panel { padding: 24px 20px; }
       .expert-card-header { flex-direction: column; text-align: center; }
       .expert-cta-row { flex-direction: column; }
@@ -624,15 +552,36 @@
 
 <!-- ── Topbar ─────────────────────────────────────────────────── -->
 <header class="topbar" id="topbar">
-  <a class="brand" href="index.html">
-    <span class="brand-mark"></span>
-    <span>Fractionalty</span>
+  <a class="brand" href="index.html" aria-label="Fractionalty home">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-wordmark">Fractionalty</span>
   </a>
-  <nav class="topbar-nav">
-    <a class="topbar-link" href="index.html#process">How It Works</a>
-    <a class="topbar-link" href="executives.html">For Executives</a>
-    <a class="topbar-cta" href="intake.html">Get Started</a>
+  <nav class="nav" id="site-nav">
+    <a href="index.html#problem">The Problem</a>
+    <a href="index.html#comparison">Wrong vs Right</a>
+    <a href="index.html#alternative">Why Fractionalty</a>
+    <a class="nav-os-link" href="expert_os.html">Expert OS</a>
+    <a href="index.html#leadership">Leadership</a>
+    <a href="executives.html">For Executives</a>
+    <a class="nav-cta" href="intake.html">Get Started</a>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
   </nav>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
 </header>
 
 <!-- ── Hero ──────────────────────────────────────────────────── -->
@@ -648,11 +597,8 @@
     and plans the next engagement — automatically.
   </p>
   <div class="hero-actions">
-    <button class="btn-hero-primary" onclick="scrollToDemo()">
-      See the Expert OS Live
-      <span>→</span>
-    </button>
-    <a class="btn-hero-secondary" href="intake.html">Start with My Problem</a>
+    <button class="button button-primary" onclick="scrollToDemo()">See the Expert OS Live →</button>
+    <a class="button button-secondary" href="intake.html">Start with My Problem</a>
   </div>
   <div class="hero-os-tags">
     <div class="hero-tag">⚡ Automated Diagnosis</div>
@@ -1115,10 +1061,25 @@
   <h2>Your Business Problem Deserves a System, Not a Guess</h2>
   <p>Join the founders who use the Fractionalty Expert OS to diagnose, execute, and keep growing.</p>
   <div class="final-cta-actions">
-    <button class="cta-white-btn" onclick="window.location.href='intake.html'">Try the Expert OS →</button>
-    <a class="cta-outline-btn" href="expert_registration.html">Join as an Expert</a>
+    <button class="button button-light" onclick="window.location.href='intake.html'">Try the Expert OS →</button>
+    <a class="button button-outline-light" href="expert_registration.html">Join as an Expert</a>
   </div>
 </section>
+
+<footer style="border-top: 1px solid var(--line); padding: 40px 0 60px; margin-top: 0;">
+  <div style="width: min(calc(100% - 48px), 1200px); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+    <div>
+      <p style="font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;">Fractionalty</p>
+      <p class="footer-copy">Embedded leadership for outcomes and ownership.</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#process">How It Works</a>
+      <a href="index.html#leadership">Leadership</a>
+      <a href="executives.html">For Executives</a>
+      <a href="intake.html">Get Started</a>
+    </div>
+  </div>
+</footer>
 
 <script>
 (function() {
@@ -1516,14 +1477,10 @@
     }
   };
 
-  // ── Topbar scroll ─────────────────────────────────────────────
-  window.addEventListener('scroll', function() {
-    qs('#topbar').classList.toggle('is-scrolled', window.scrollY > 50);
-  }, { passive: true });
-
   // Init UI
   syncUI();
 })();
 </script>
+<script src="script.js"></script>
 </body>
 </html>
