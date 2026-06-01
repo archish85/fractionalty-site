@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join as an Executive | Fractionalty</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f8f8f6;
+      --surface: #ffffff;
+      --text: #180A4B;
+      --text-soft: rgba(24, 10, 75, 0.65);
+      --line: rgba(24, 10, 75, 0.12);
+      --accent: #180A4B;
+      --accent-light: #2d1a6b;
+      --accent-muted: rgba(24, 10, 75, 0.06);
+      --white: #ffffff;
+      --success: #10B981;
+      --radius: 16px;
+      --shadow: 0 8px 40px rgba(24, 10, 75, 0.06);
+      --border: rgba(24, 10, 75, 0.12);
+      --card: #ffffff;
+      --muted: rgba(24, 10, 75, 0.65);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0d0620;
+      --surface: #180A4B;
+      --text: #f8f8f6;
+      --text-soft: rgba(248, 248, 246, 0.65);
+      --line: rgba(248, 248, 246, 0.12);
+      --accent: #f8f8f6;
+      --accent-light: #ffffff;
+      --accent-muted: rgba(248, 248, 246, 0.08);
+      --white: #180A4B;
+      --success: #10B981;
+      --radius: 16px;
+      --shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+      --border: rgba(248, 248, 246, 0.12);
+      --card: #180A4B;
+      --muted: rgba(248, 248, 246, 0.65);
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 60px;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    .topbar {
+      width: 100%; max-width: 680px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .logo-mark {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--accent);
+    }
+    .logo span {
+      font-weight: 800;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .step-label { font-size: 13px; color: var(--text-soft); font-weight: 600; }
+
+    .theme-toggle {
+      width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 50%;
+      background: var(--card); color: var(--text); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s ease; flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--accent-muted); transform: scale(1.05); }
+    .theme-toggle .icon-sun, .theme-toggle .icon-moon { width: 16px; height: 16px; }
+    [data-theme="dark"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon, :root:not([data-theme]) .icon-moon { display: none; }
+
+    .progress-wrap {
+      width: 100%; max-width: 680px; height: 4px;
+      background: var(--border); border-radius: 99px; margin-bottom: 36px; overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 99px; transition: width 0.5s cubic-bezier(.4,0,.2,1);
+    }
+
+    .card {
+      width: 100%; max-width: 680px;
+      background: var(--card); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 44px 48px;
+      animation: fadeUp 0.4s ease both;
+      border: 1px solid var(--border);
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(18px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .step-tag {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--text); background: var(--accent-muted);
+      border-radius: 99px; padding: 5px 14px; margin-bottom: 20px;
+    }
+    h1 { font-size: 28px; font-weight: 800; line-height: 1.25; color: var(--text); margin-bottom: 12px; letter-spacing: -0.02em; }
+    h2 { font-size: 24px; font-weight: 800; line-height: 1.3; color: var(--text); margin-bottom: 12px; letter-spacing: -0.02em; }
+    .subtitle { font-size: 15px; color: var(--text-soft); line-height: 1.65; margin-bottom: 28px; }
+
+    .field { margin-bottom: 24px; }
+    label { display: block; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; letter-spacing: 0.1px; }
+    label .hint { font-weight: 400; color: var(--text-soft); font-size: 12px; margin-left: 6px; }
+
+    input[type="text"], input[type="email"], input[type="url"], textarea, select {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--border); border-radius: 8px;
+      font-family: 'Manrope', sans-serif; font-size: 15px; color: var(--text);
+      background: var(--bg); outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-muted); background: var(--surface);
+    }
+    textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+    .row { display: flex; gap: 16px; }
+    .row .field { flex: 1; }
+
+    .btn-row { display: flex; align-items: center; justify-content: space-between; margin-top: 36px; gap: 12px; }
+    .btn {
+      padding: 14px 32px; border-radius: 99px;
+      font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 600;
+      cursor: pointer; border: none; transition: all 0.2s; letter-spacing: 0.1px;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .btn:hover { transform: translateY(-1.5px); }
+    .btn-primary {
+      background: var(--accent); color: var(--white); flex: 1;
+    }
+    .btn-primary:hover { background: var(--accent-light); }
+    .btn-ghost { background: transparent; color: var(--text-soft); border: 1.5px solid var(--border); padding: 13px 24px; }
+    .btn-ghost:hover { color: var(--text); border-color: var(--text); }
+
+    .welcome-hero { text-align: center; padding: 12px 0 8px; }
+    .welcome-hero h1 { font-size: 32px; margin-bottom: 16px; }
+    .welcome-hero .subtitle { max-width: 480px; margin: 0 auto 36px; }
+    .value-pills { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+    .value-pill {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 18px; background: var(--accent-muted); border-radius: 99px;
+      font-size: 13px; font-weight: 600; color: var(--text);
+    }
+    .time-note { font-size: 13px; color: var(--text-soft); text-align: center; margin-top: 16px; }
+
+    .chip-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2px; }
+    .chip {
+      padding: 10px 20px; border: 1.5px solid var(--border); border-radius: 99px;
+      font-size: 14px; font-weight: 600; color: var(--text-soft);
+      cursor: pointer; transition: all 0.18s; user-select: none; background: var(--bg);
+      outline: none; display: inline-flex; align-items: center; justify-content: center;
+    }
+    .chip:hover { border-color: var(--accent); color: var(--text); }
+    .chip.selected { border-color: var(--accent); background: var(--accent); color: var(--white); }
+
+    .section-divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+    /* Character counter */
+    .char-counter {
+      text-align: right; font-size: 12px; color: var(--text-soft); margin-top: 6px;
+    }
+    .char-counter.good { color: var(--success); }
+    .char-counter.warn { color: var(--text-soft); font-weight: 600; }
+
+    /* Summary display (read-only) */
+    .summary-card {
+      background: var(--accent-muted); border-radius: 12px; padding: 16px 20px;
+      margin-bottom: 14px; border-left: 3px solid var(--accent);
+    }
+    .summary-card .sc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 6px; }
+    .summary-card .sc-text { font-size: 14px; color: var(--text); line-height: 1.6; }
+
+    .step { display: none; }
+    .step.active { display: block; }
+
+    .error-msg { font-size: 12px; color: #EF4444; margin-top: 6px; display: none; }
+    .error-msg.show { display: block; }
+
+    @media (max-width: 600px) {
+      .card { padding: 32px 24px; }
+      h1 { font-size: 24px; }
+      .row { flex-direction: column; gap: 0; }
+      .summary-card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="logo" href="index.html">
+    <span class="logo-mark"></span>
+    <span>Fractionalty</span>
+  </a>
+  <div class="topbar-right">
+    <div class="step-label" id="step-counter"></div>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+<div class="progress-wrap">
+  <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+</div>
+
+<!-- STEP 0 — Welcome -->
+<div class="card step active" id="step-0">
+  <div class="welcome-hero">
+    <div class="step-tag">✦ Join as an Executive</div>
+    <h1>Build Your Portfolio.<br><em>Engage as an Embedded Leader.</em></h1>
+    <p class="subtitle">Apply to join the Fractionalty network of vetted fractional executives. We match you directly to serious business challenges where founders need operating judgment — not slides. Set up your profile in under 5 minutes.</p>
+    <div class="value-pills">
+      <div class="value-pill"><span>📋</span> Profile Details</div>
+      <div class="value-pill"><span>🎯</span> Select Expertise</div>
+      <div class="value-pill"><span>📈</span> Achievements Record</div>
+      <div class="value-pill"><span>🤝</span> Flexible Engagement</div>
+    </div>
+    <button class="btn btn-primary" id="btn-begin" style="padding:16px 48px;font-size:16px;width:100%;">Apply to Join as an Executive →</button>
+    <p class="time-note">Takes about 4 minutes · Curation review required</p>
+  </div>
+</div>
+
+<!-- STEP 1 — Profile details -->
+<div class="card step" id="step-1">
+  <div class="step-tag">Step 1 of 5 · About You</div>
+  <h2>Welcome. Let's start with your profile.</h2>
+  <p class="subtitle">Introduce yourself to the Fractionalty network. We match based on direct credibility and experience.</p>
+  
+  <div class="row">
+    <div class="field">
+      <label>Full Name</label>
+      <input type="text" id="full_name" placeholder="e.g. Priyesh Shah">
+      <div class="error-msg" id="err-name">Please enter your name</div>
+    </div>
+    <div class="field">
+      <label>Email Address</label>
+      <input type="email" id="email" placeholder="you@example.com">
+      <div class="error-msg" id="err-email">Please enter a valid email address</div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="field">
+      <label>Phone / WhatsApp</label>
+      <input type="text" id="mobile" placeholder="+91 98765 43210">
+      <div class="error-msg" id="err-mobile">Please enter your contact number</div>
+    </div>
+    <div class="field">
+      <label>LinkedIn Profile URL</label>
+      <input type="text" id="linkedin" placeholder="https://linkedin.com/in/username">
+      <div class="error-msg" id="err-linkedin">Please enter a valid LinkedIn profile URL</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" data-goto="0">← Back</button>
+    <button class="btn btn-primary" data-validate="1">Continue →</button>
+  </div>
+</div>
+
+<!-- STEP 2 — Leadership Expertise -->
+<div class="card step" id="step-2">
+  <div class="step-tag">Step 2 of 5 · Leadership Area</div>
+  <h2>What is your primary area of leadership?</h2>
+  <p class="subtitle">Select the functional area that best describes your executive depth.</p>
+  
+  <div class="field">
+    <label>Select your primary function</label>
+    <div class="chip-grid" id="e-role-chips">
+      <button type="button" class="chip" data-role="cfo">💰 CFO / Finance Lead</button>
+      <button type="button" class="chip" data-role="cto">💻 CTO / Tech &amp; Product</button>
+      <button type="button" class="chip" data-role="cmo">📈 CMO / Marketing &amp; Growth</button>
+      <button type="button" class="chip" data-role="chro">👥 CHRO / People &amp; HR</button>
+      <button type="button" class="chip" data-role="coo">⚙️ COO / Operations &amp; Scale</button>
+      <button type="button" class="chip" data-role="other">♟️ General / Other Executive</button>
+    </div>
+    <div class="error-msg" id="err-role">Please select your primary function</div>
+  </div>
+
+  <div class="field" id="capabilities-section" style="display:none; margin-top:28px;">
+    <label>Highlight Core Capabilities <span class="hint">Select all that apply</span></label>
+    <div class="chip-grid" id="e-capabilities-chips"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" data-goto="1">← Back</button>
+    <button class="btn btn-primary" data-validate="2">Continue →</button>
+  </div>
+</div>
+
+<!-- STEP 3 — Track Record -->
+<div class="card step" id="step-3">
+  <div class="step-tag">Step 3 of 5 · Track Record</div>
+  <h2>Tell us about your background.</h2>
+  <p class="subtitle">Detail your years of operating experience and industry focus.</p>
+
+  <div class="field">
+    <label>Years of Executive Experience</label>
+    <div class="chip-grid" id="e-exp-chips">
+      <button type="button" class="chip" data-exp="5-10">5–10 Years</button>
+      <button type="button" class="chip" data-exp="10-15">10–15 Years</button>
+      <button type="button" class="chip" data-exp="15+">15+ Years</button>
+    </div>
+    <div class="error-msg" id="err-exp">Please select your experience range</div>
+  </div>
+
+  <div class="field">
+    <label>Focus Industries / Sectors <span class="hint">Select all that apply</span></label>
+    <div class="chip-grid" id="e-industry-chips">
+      <button type="button" class="chip" data-ind="saas">B2B SaaS</button>
+      <button type="button" class="chip" data-ind="fintech">Fintech</button>
+      <button type="button" class="chip" data-ind="ecommerce">E-commerce</button>
+      <button type="button" class="chip" data-ind="edtech">Edtech</button>
+      <button type="button" class="chip" data-ind="consumer">D2C / Consumer</button>
+      <button type="button" class="chip" data-ind="enterprise">Enterprise Tech</button>
+      <button type="button" class="chip" data-ind="other">Other</button>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Key Business Problems You Excel At Solving <span class="hint">Minimum 30 characters</span></label>
+    <textarea id="achievements" placeholder="e.g. I specialize in setting up early-stage financial governance, structuring unit economics for series-A SaaS startups, and leading cash-preservation audits..." style="min-height:120px;"></textarea>
+    <div class="char-counter" id="achievements-counter">0 characters</div>
+    <div class="error-msg" id="err-achievements">Please share at least a few sentences about your achievements (min 30 characters)</div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" data-goto="2">← Back</button>
+    <button class="btn btn-primary" data-validate="3">Continue →</button>
+  </div>
+</div>
+
+<!-- STEP 4 — Preferences -->
+<div class="card step" id="step-4">
+  <div class="step-tag">Step 4 of 5 · Preferences</div>
+  <h2>Availability &amp; Work Style</h2>
+  <p class="subtitle">Let us know how much capacity you have and how you prefer to collaborate.</p>
+
+  <div class="field">
+    <label>Bandwidth / Availability</label>
+    <div class="chip-grid" id="e-bandwidth-chips">
+      <button type="button" class="chip" data-bw="1-2">1–2 Days / Week</button>
+      <button type="button" class="chip" data-bw="3-4">3–4 Days / Week</button>
+      <button type="button" class="chip" data-bw="full">Full Portfolio Capacity</button>
+    </div>
+    <div class="error-msg" id="err-bandwidth">Please select your bandwidth availability</div>
+  </div>
+
+  <div class="field">
+    <label>Work Style Preference</label>
+    <div class="chip-grid" id="e-location-chips">
+      <button type="button" class="chip" data-loc="remote">Fully Remote</button>
+      <button type="button" class="chip" data-loc="mumbai">Hybrid (Mumbai)</button>
+      <button type="button" class="chip" data-loc="bangalore">Hybrid (Bangalore)</button>
+      <button type="button" class="chip" data-loc="delhi">Hybrid (Delhi/NCR)</button>
+      <button type="button" class="chip" data-loc="other">Hybrid (Other)</button>
+    </div>
+    <div class="error-msg" id="err-location">Please select your work preference</div>
+  </div>
+
+  <div class="field">
+    <label>Expected Retainer Expectation <span class="hint">Monthly, optional</span></label>
+    <input type="text" id="retainer" placeholder="e.g. ₹1.5L - ₹2.5L / month">
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" data-goto="3">← Back</button>
+    <button class="btn btn-primary" data-validate="4">Continue →</button>
+  </div>
+</div>
+
+<!-- STEP 5 — Review Profile -->
+<div class="card step" id="step-5">
+  <div class="step-tag">Step 5 of 5 · Review Profile</div>
+  <h2>Review your application.</h2>
+  <p class="subtitle">Ensure everything is correct before submitting to the Fractionalty curation team.</p>
+
+  <div class="summary-card">
+    <div class="sc-label">Profile Contact Details</div>
+    <div class="sc-text" id="sum-contact"></div>
+  </div>
+
+  <div class="summary-card">
+    <div class="sc-label">Primary Expertise &amp; Focus</div>
+    <div class="sc-text" id="sum-expertise"></div>
+  </div>
+
+  <div class="summary-card">
+    <div class="sc-label">Solved Problems &amp; Background</div>
+    <div class="sc-text" id="sum-achievements"></div>
+  </div>
+
+  <div class="summary-card">
+    <div class="sc-label">Engagement Preferences</div>
+    <div class="sc-text" id="sum-preferences"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" data-goto="4">← Back</button>
+    <button class="btn btn-primary" id="btn-submit" style="flex:1;">Submit Application →</button>
+  </div>
+</div>
+
+<!-- STEP 6 — Thank You -->
+<div class="card step" id="step-6" style="text-align:center;">
+  <div style="font-size:56px;margin-bottom:20px;">🏆</div>
+  <div class="step-tag">Application Received</div>
+  <h1 style="margin-bottom:16px;">We're thrilled to review your background.</h1>
+  <p class="subtitle" style="max-width:420px;margin:0 auto 32px;">
+    Thanks for applying. To keep our platform highly credible, our curation team verifies all applicants. You can expect to hear from us in 3–5 business days regarding next steps.
+  </p>
+  <a href="index.html" style="text-decoration:none;">
+    <button class="btn btn-primary" style="padding:14px 40px;">Back to Home →</button>
+  </a>
+  <p class="time-note" style="margin-top:20px;">We'll reach out to your registered email</p>
+</div>
+
+<script>
+// ── State ──────────────────────────────────────────────────
+var state = {
+  currentStep: 0,
+  totalSteps: 5,
+  data: {}
+};
+
+// ── Capabilities Options ────────────────────────────────────
+var CAPABILITIES = {
+  cfo: ['Fundraising Support', 'Financial Controls & Strategy', 'Board Reporting', 'Unit Economics Optimization', 'Compliance & Taxation'],
+  cto: ['Architecture Design', 'Technical Strategy', 'Engineering Team Scaling', 'Product Integration', 'Infrastructure & Cloud Ops'],
+  cmo: ['Go-to-Market (GTM) Strategy', 'Growth Marketing', 'Brand positioning & messaging', 'Performance Marketing', 'Demand Generation'],
+  chro: ['Organizational Design', 'Leadership Hiring', 'Culture Building', 'HR Operations at Scale', 'Performance Reviews & Comp'],
+  coo: ['Process Optimization', 'Operational Scaling', 'Vendor Management', 'Cross-Functional Ops', 'Efficiency & Quality Standards'],
+  other: ['Strategic Planning', 'Business Development', 'Advisory Support', 'M&A Advisory', 'General Management']
+};
+
+// ── Navigation ─────────────────────────────────────────────
+function goToStep(n) {
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  var el = document.getElementById('step-' + n);
+  if (el) el.classList.add('active');
+  state.currentStep = n;
+  updateProgress(n);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Render summary review details on Step 5
+  if (n === 5) generateExecSummary();
+}
+
+function updateProgress(step) {
+  var pct = step === 0 ? 0 : Math.round((step / state.totalSteps) * 100);
+  document.getElementById('progress-bar').style.width = pct + '%';
+  var counter = document.getElementById('step-counter');
+  if (step === 0 || step > 5) { counter.textContent = ''; }
+  else { counter.textContent = 'Step ' + step + ' of ' + state.totalSteps; }
+}
+
+// ── Validation ─────────────────────────────────────────────
+function validateAndNext(step) {
+  var valid = true;
+  if (step === 1) {
+    var name = getVal('full_name'), email = getVal('email'), mobile = getVal('mobile'), linkedin = getVal('linkedin');
+    showErr('err-name', !name);
+    showErr('err-email', !email || !/\S+@\S+\.\S+/.test(email));
+    showErr('err-mobile', !mobile);
+    showErr('err-linkedin', !linkedin || !/^(https?:\/\/)?(www\.)?linkedin\.com\/.*$/i.test(linkedin));
+    if (!name || !email || !/\S+@\S+\.\S+/.test(email) || !mobile || !linkedin || !/^(https?:\/\/)?(www\.)?linkedin\.com\/.*$/i.test(linkedin)) valid = false;
+  }
+  if (step === 2) {
+    var role = state.data.execRole;
+    showErr('err-role', !role);
+    if (!role) valid = false;
+  }
+  if (step === 3) {
+    var exp = state.data.execExp;
+    var achievements = getVal('achievements');
+    showErr('err-exp', !exp);
+    showErr('err-achievements', achievements.length < 30);
+    if (!exp || achievements.length < 30) valid = false;
+  }
+  if (step === 4) {
+    var bandwidth = state.data.execBandwidth;
+    var location = state.data.execLocation;
+    showErr('err-bandwidth', !bandwidth);
+    showErr('err-location', !location);
+    if (!bandwidth || !location) valid = false;
+  }
+  if (valid) goToStep(step + 1);
+}
+
+function showErr(id, show) { var el = document.getElementById(id); if (el) el.classList.toggle('show', show); }
+function getVal(id) { return document.getElementById(id).value.trim(); }
+
+// ── Character counters ──────────────────────────────────────────
+function setupCharCounter(inputId, counterId) {
+  var input = document.getElementById(inputId);
+  var counter = document.getElementById(counterId);
+  if (!input || !counter) return;
+  input.addEventListener('input', function() {
+    var len = input.value.length;
+    counter.textContent = len + ' character' + (len !== 1 ? 's' : '');
+    counter.className = 'char-counter' + (len >= 100 ? ' good' : (len > 0 ? ' warn' : ''));
+  });
+}
+
+// ── Capabilities Chip Rendering ───────────────────────────────
+function renderCapabilities(role) {
+  var container = document.getElementById('e-capabilities-chips');
+  var section = document.getElementById('capabilities-section');
+  if (!container || !section) return;
+
+  var items = CAPABILITIES[role] || CAPABILITIES['other'];
+  container.innerHTML = '';
+  state.data.execCapabilities = [];
+
+  items.forEach(function(cap) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'chip';
+    btn.textContent = cap;
+    btn.dataset.cap = cap;
+    container.appendChild(btn);
+  });
+  section.style.display = 'block';
+}
+
+// ── Executive Review Summary Generator ──────────────────────────
+function generateExecSummary() {
+  var name = getVal('full_name'), email = getVal('email'), phone = getVal('mobile'), linkedin = getVal('linkedin');
+  var roleLabels = { cfo: 'CFO / Finance Lead', cto: 'CTO / Tech & Product', cmo: 'CMO / Marketing & Growth', chro: 'CHRO / People & HR', coo: 'COO / Operations & Scale', other: 'Other / General' };
+  var expLabels = { '5-10': '5–10 Years', '10-15': '10–15 Years', '15+': '15+ Years' };
+  var indLabels = { saas: 'B2B SaaS', fintech: 'Fintech', ecommerce: 'E-commerce', edtech: 'Edtech', consumer: 'D2C / Consumer', enterprise: 'Enterprise Tech', other: 'Other' };
+  var bwLabels = { '1-2': '1–2 Days / Week', '3-4': '3–4 Days / Week', full: 'Full Portfolio Capacity' };
+  var locLabels = { remote: 'Fully Remote', mumbai: 'Hybrid (Mumbai)', bangalore: 'Hybrid (Bangalore)', delhi: 'Hybrid (Delhi/NCR)', other: 'Hybrid (Other)' };
+
+  var role = roleLabels[state.data.execRole] || 'Not specified';
+  var exp = expLabels[state.data.execExp] || 'Not specified';
+  
+  var caps = (state.data.execCapabilities || []).join(', ') || 'None selected';
+  var inds = (state.data.execIndustries || []).map(function(k) { return indLabels[k] || k; }).join(', ') || 'None selected';
+  var bandwidth = bwLabels[state.data.execBandwidth] || 'Not specified';
+  var location = locLabels[state.data.execLocation] || 'Not specified';
+  var retainer = getVal('retainer') || 'Not specified';
+  var achievements = getVal('achievements');
+
+  document.getElementById('sum-contact').innerHTML = '<strong>' + name + '</strong><br>' + email + '<br>' + phone + '<br><a href="' + linkedin + '" target="_blank" style="text-decoration:underline;color:var(--accent);">' + linkedin + '</a>';
+  document.getElementById('sum-expertise').innerHTML = 'Primary Function: <strong>' + role + '</strong><br>Core Focus: ' + caps;
+  document.getElementById('sum-achievements').innerHTML = 'Experience: <strong>' + exp + '</strong><br>Industries: ' + inds + '<br><br><strong>Solved Business Challenges:</strong><br>' + achievements;
+  document.getElementById('sum-preferences').innerHTML = 'Bandwidth: <strong>' + bandwidth + '</strong><br>Location Preference: <strong>' + location + '</strong><br>Retainer Target: ' + retainer;
+}
+
+// ── Submit ─────────────────────────────────────────────────
+function submitForm() {
+  state.data.full_name = getVal('full_name');
+  state.data.email = getVal('email');
+  state.data.mobile = getVal('mobile');
+  state.data.linkedin = getVal('linkedin');
+  state.data.retainer = getVal('retainer');
+  state.data.achievements = getVal('achievements');
+  state.data.source = 'executive_registration';
+
+  console.log('Executive Application Submission:', JSON.stringify(state.data, null, 2));
+  goToStep(6);
+}
+
+// ── Event Listeners ────────────────────────────────────────
+document.getElementById('btn-begin').addEventListener('click', function() { goToStep(1); });
+document.getElementById('btn-submit').addEventListener('click', submitForm);
+
+// Event delegation for chips & buttons
+document.addEventListener('click', function(e) {
+  var gotoBtn = e.target.closest('[data-goto]');
+  if (gotoBtn) { goToStep(parseInt(gotoBtn.dataset.goto)); return; }
+
+  var validateBtn = e.target.closest('[data-validate]');
+  if (validateBtn) {
+    var val = validateBtn.dataset.validate;
+    validateAndNext(parseInt(val));
+    return;
+  }
+
+  // Chip clicks
+  var chip = e.target.closest('.chip');
+  if (chip) {
+    var container = chip.parentElement;
+    
+    // Check if it is multi-select
+    if (container.id === 'e-capabilities-chips') {
+      chip.classList.toggle('selected');
+      state.data.execCapabilities = Array.from(container.querySelectorAll('.chip.selected')).map(function(c) {
+        return c.dataset.cap;
+      });
+    } else if (container.id === 'e-industry-chips') {
+      chip.classList.toggle('selected');
+      state.data.execIndustries = Array.from(container.querySelectorAll('.chip.selected')).map(function(c) {
+        return c.dataset.ind;
+      });
+    } else {
+      // Single-select chips
+      container.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('selected'); });
+      chip.classList.add('selected');
+
+      if (container.id === 'e-role-chips') {
+        state.data.execRole = chip.dataset.role;
+        renderCapabilities(chip.dataset.role);
+      } else if (container.id === 'e-exp-chips') {
+        state.data.execExp = chip.dataset.exp;
+      } else if (container.id === 'e-bandwidth-chips') {
+        state.data.execBandwidth = chip.dataset.bw;
+      } else if (container.id === 'e-location-chips') {
+        state.data.execLocation = chip.dataset.loc;
+      }
+    }
+    return;
+  }
+});
+
+// ── Theme Toggle ──────────────────────────────────────────
+var themeToggle = document.querySelector('.theme-toggle');
+function setTheme(t) { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+var stored = localStorage.getItem('theme');
+var preferred = stored || (window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+setTheme(preferred);
+if (themeToggle) {
+  themeToggle.addEventListener('click', function() {
+    var current = document.documentElement.getAttribute('data-theme');
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+}
+
+// ── Init ───────────────────────────────────────────────────
+setupCharCounter('achievements', 'achievements-counter');
+updateProgress(0);
+</script>
+</body>
+</html>

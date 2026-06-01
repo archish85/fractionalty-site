@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fractionalty | Embedded Business Leadership</title>
+  <meta name="description" content="Fractionalty helps startups and SMBs solve leadership gaps with vetted embedded fractional CXOs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Fixed topbar (outside scroll container) -->
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#home" aria-label="Fractionalty home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-wordmark">Fractionalty</span>
+    </a>
+    <nav class="nav" id="site-nav">
+      <a href="#problem">The Problem</a>
+      <a href="#comparison">Wrong vs Right</a>
+      <a href="#alternative">Why Fractionalty</a>
+      <a class="nav-os-link" href="expert_os.html">Expert OS</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#executives">For Executives</a>
+      <a class="nav-cta" href="intake.html">Get Started</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+  </header>
+
+  <!-- Section progress dots -->
+  <nav class="section-dots" id="section-dots" aria-label="Section navigation">
+    <button class="dot is-active" aria-label="Hero"></button>
+    <button class="dot" aria-label="The Problem"></button>
+    <button class="dot" aria-label="Wrong vs Right"></button>
+    <button class="dot" aria-label="Why Fractionalty"></button>
+    <button class="dot" aria-label="How It Works"></button>
+    <button class="dot" aria-label="Leadership"></button>
+    <button class="dot" aria-label="For Executives"></button>
+    <button class="dot" aria-label="Trust"></button>
+    <button class="dot" aria-label="Start Here"></button>
+  </nav>
+
+  <!-- Scroll container with snap sections -->
+  <div class="site-scroll" id="site-scroll">
+
+    <!-- ═══════════════════════════════════
+         SECTION 1: Hero
+    ═══════════════════════════════════ -->
+    <section class="snap-section hero" id="home">
+      <div class="site-shell">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow reveal">Embedded business leadership</p>
+            <h1 class="reveal">Serious Leadership, Without the Full-Time Cost</h1>
+            <p class="hero-text reveal">
+              Hire vetted fractional CXOs who diagnose the real problem, lead execution,
+              and strengthen your business — without the cost or rigidity of a full-time executive.
+            </p>
+            <div class="hero-actions reveal">
+              <a class="button button-primary" href="intake.html">Tell us your problem</a>
+              <a class="button button-secondary" href="#process">How it works</a>
+            </div>
+            <p class="support-line reveal">For founders who need real leadership, not generic advice.</p>
+          </div>
+          <div class="hero-visual reveal">
+            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-label="Fractionalty value proposition: Low Cost, Quality Leadership, Best Fit">
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#180A4B;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#3d2480;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#6b4fbf;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#180A4B;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="grad3" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#180A4B;stop-opacity:0.8" />
+                  <stop offset="100%" style="stop-color:#8b6fd4;stop-opacity:0.9" />
+                </linearGradient>
+                <linearGradient id="grad4" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style="stop-color:#5a3d9e;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#180A4B;stop-opacity:1" />
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <filter id="shadow">
+                  <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#180A4B" flood-opacity="0.15"/>
+                </filter>
+              </defs>
+              <circle cx="250" cy="250" r="180" fill="none" stroke="#180A4B" stroke-width="0.5" opacity="0.15" class="pulse-ring"/>
+              <circle cx="250" cy="250" r="210" fill="none" stroke="#180A4B" stroke-width="0.5" opacity="0.1" class="pulse-ring" style="animation-delay: 0.5s"/>
+              <!-- Connecting lines from center to each pill -->
+              <line x1="250" y1="250" x2="250" y2="130" stroke="#180A4B" stroke-width="1.5" opacity="0.15" class="draw-line"/>
+              <line x1="250" y1="250" x2="415" y2="250" stroke="#180A4B" stroke-width="1.5" opacity="0.15" class="draw-line-delay"/>
+              <line x1="250" y1="250" x2="250" y2="370" stroke="#180A4B" stroke-width="1.5" opacity="0.15" class="draw-line"/>
+              <line x1="250" y1="250" x2="85" y2="250" stroke="#180A4B" stroke-width="1.5" opacity="0.15" class="draw-line-delay"/>
+
+              <!-- TOP: Low Cost -->
+              <g class="float-1" filter="url(#shadow)">
+                <rect x="160" y="55" width="180" height="90" rx="16" fill="url(#grad1)"/>
+                <text x="250" y="95" font-family="Manrope, sans-serif" font-size="24" font-weight="800" fill="white" text-anchor="middle">₹ LOW COST</text>
+                <text x="250" y="118" font-family="Manrope, sans-serif" font-size="11" font-weight="500" fill="white" text-anchor="middle" opacity="0.65">Fractional pricing, full impact</text>
+              </g>
+              <!-- RIGHT: Quality Leadership -->
+              <g class="float-2" filter="url(#shadow)">
+                <rect x="330" y="205" width="180" height="90" rx="16" fill="url(#grad2)"/>
+                <text x="420" y="245" font-family="Manrope, sans-serif" font-size="24" font-weight="800" fill="white" text-anchor="middle">★ QUALITY</text>
+                <text x="420" y="268" font-family="Manrope, sans-serif" font-size="11" font-weight="500" fill="white" text-anchor="middle" opacity="0.65">Vetted CXO-level leaders</text>
+              </g>
+              <!-- BOTTOM: Best Fit -->
+              <g class="float-3" filter="url(#shadow)">
+                <rect x="160" y="335" width="180" height="90" rx="16" fill="url(#grad3)"/>
+                <text x="250" y="375" font-family="Manrope, sans-serif" font-size="24" font-weight="800" fill="white" text-anchor="middle">◎ BEST FIT</text>
+                <text x="250" y="398" font-family="Manrope, sans-serif" font-size="11" font-weight="500" fill="white" text-anchor="middle" opacity="0.65">Matched to your problem</text>
+              </g>
+              <!-- LEFT: Quick Onboarding -->
+              <g class="float-4" filter="url(#shadow)">
+                <rect x="0" y="205" width="180" height="90" rx="16" fill="url(#grad4)"/>
+                <text x="90" y="245" font-family="Manrope, sans-serif" font-size="24" font-weight="800" fill="white" text-anchor="middle">⚡ QUICK</text>
+                <text x="90" y="268" font-family="Manrope, sans-serif" font-size="11" font-weight="500" fill="white" text-anchor="middle" opacity="0.65">Onboarding in days</text>
+              </g>
+              <g filter="url(#glow)">
+                <circle cx="250" cy="250" r="56" fill="#180A4B"/>
+                <circle cx="250" cy="250" r="48" fill="none" stroke="white" stroke-width="2" opacity="0.3"/>
+                <circle cx="250" cy="250" r="42" fill="none" stroke="white" stroke-width="1" opacity="0.15"/>
+                <text x="250" y="268" font-family="Manrope, sans-serif" font-size="42" font-weight="800" fill="white" text-anchor="middle">F</text>
+              </g>
+              <text x="250" y="310" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#180A4B" text-anchor="middle" letterSpacing="0.1em">FRACTIONALTY</text>
+              <!-- Decorative dots at midpoints between pills -->
+              <circle cx="310" cy="100" r="3" fill="#180A4B" opacity="0.12"/>
+              <circle cx="440" cy="170" r="3" fill="#180A4B" opacity="0.12"/>
+              <circle cx="440" cy="330" r="3" fill="#180A4B" opacity="0.12"/>
+              <circle cx="310" cy="400" r="3" fill="#180A4B" opacity="0.12"/>
+              <circle cx="190" cy="400" r="3" fill="#180A4B" opacity="0.12"/>
+              <circle cx="60" cy="330" r="3" fill="#180A4B" opacity="0.12"/>
+              <circle cx="60" cy="170" r="3" fill="#180A4B" opacity="0.12"/>
+              <circle cx="190" cy="100" r="3" fill="#180A4B" opacity="0.12"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <div class="mouse"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         SECTION 2: The Problem
+    ═══════════════════════════════════ -->
+    <section class="snap-section section" id="problem">
+      <div class="site-shell">
+        <div class="section-heading reveal">
+          <p class="eyebrow">The problem</p>
+          <h2>Most Businesses Are Forced Into the Wrong Choice</h2>
+          <p>When a business hits a leadership gap, the usual options all come with tradeoffs.</p>
+        </div>
+        <div class="problem-grid stagger">
+          <article class="panel panel-muted">
+            <p class="panel-label">Cheap talent</p>
+            <h3>Looks affordable.</h3>
+            <p>Rarely owns outcomes, rarely brings operating judgment, and often increases management load.</p>
+          </article>
+          <article class="panel panel-muted">
+            <p class="panel-label">Consultants</p>
+            <h3>Smart advice.</h3>
+            <p>Useful perspective, but limited execution ownership when your business needs forward motion.</p>
+          </article>
+          <article class="panel panel-muted">
+            <p class="panel-label">Full-time hire</p>
+            <h3>Powerful, but risky.</h3>
+            <p>Slow to hire, expensive to commit to, and rigid when the problem still needs scoping.</p>
+          </article>
+        </div>
+        <p class="section-close reveal">
+          Fractionalty exists for the space in between — when you need serious leadership, but not a full-time commitment.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         SECTION 3: Wrong Way vs Right Way
+    ═══════════════════════════════════ -->
+    <section class="snap-section section-wrong-right" id="comparison">
+      <div class="site-shell">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Two paths. One outcome.</p>
+          <h2>When You Face a Leadership Gap</h2>
+          <p>The difference between short-term fixes and lasting impact.</p>
+        </div>
+        <div class="wr-grid stagger">
+          <!-- WRONG WAY -->
+          <div class="wr-column wr-wrong">
+            <div class="wr-column-header">
+              <span class="wr-badge wr-badge-wrong">Wrong Way</span>
+              <h3>Guess, Grind, and Settle</h3>
+            </div>
+            <div class="wr-steps">
+              <div class="wr-step">
+                <span class="wr-step-num">1</span>
+                <div class="wr-step-copy">
+                  <strong>You face a problem.</strong>
+                  <span>Growth is stalling, the team is misaligned, or the numbers aren't adding up. You know something needs to change.</span>
+                </div>
+              </div>
+              <div class="wr-step">
+                <span class="wr-step-num">2</span>
+                <div class="wr-step-copy">
+                  <strong>You decide whom to hire.</strong>
+                  <span>Without a clear framework, you guess at the role — CFO? CMO? "Someone senior" — and start searching.</span>
+                </div>
+              </div>
+              <div class="wr-step">
+                <span class="wr-step-num">3</span>
+                <div class="wr-step-copy">
+                  <strong>Everyone is out of budget.</strong>
+                  <span>Full-time CXOs cost ₹40L–₹1Cr+. Consultants charge ₹5L+ with no execution ownership. The math doesn't work.</span>
+                </div>
+              </div>
+              <div class="wr-step">
+                <span class="wr-step-num">4</span>
+                <div class="wr-step-copy">
+                  <strong>You hire a freelancer.</strong>
+                  <span>You settle for the cheapest option. They deliver short-term outputs, not outcomes. The problem resurfaces in 3 months.</span>
+                </div>
+              </div>
+            </div>
+            <div class="wr-outcome wr-outcome-wrong">
+              <span class="wr-outcome-icon">✗</span>
+              <p><strong>Short-term results. Long-term cost.</strong> The "fix" creates downstream problems — misaligned strategy, wasted spend, and a team that's seen it all before.</p>
+            </div>
+          </div>
+
+          <!-- RIGHT WAY -->
+          <div class="wr-column wr-right">
+            <div class="wr-column-header">
+              <span class="wr-badge wr-badge-right">Right Way</span>
+              <h3>Share, Match, and Lead</h3>
+            </div>
+            <div class="wr-steps">
+              <div class="wr-step">
+                <span class="wr-step-num">1</span>
+                <div class="wr-step-copy">
+                  <strong>You share your problem with Fractionalty.</strong>
+                  <span>No job title needed. Just describe what's breaking, what's urgent, and where leadership is missing.</span>
+                </div>
+              </div>
+              <div class="wr-step">
+                <span class="wr-step-num">2</span>
+                <div class="wr-step-copy">
+                  <strong>We arrange three interviews.</strong>
+                  <span>We match you with vetted executives who've solved the same or similar problems — or have the expertise to diagnose and articulate a solution.</span>
+                </div>
+              </div>
+              <div class="wr-step">
+                <span class="wr-step-num">3</span>
+                <div class="wr-step-copy">
+                  <strong>You choose your fractional executive.</strong>
+                  <span>After the interviews, you bring the right leader on board — with clear scope, defined expectations, and real ownership.</span>
+                </div>
+              </div>
+              <div class="wr-step">
+                <span class="wr-step-num">4</span>
+                <div class="wr-step-copy">
+                  <strong>They lead. Your business moves forward.</strong>
+                  <span>An embedded leader who diagnoses the real problem, drives execution, and strengthens your team — without the full-time cost.</span>
+                </div>
+              </div>
+            </div>
+            <div class="wr-outcome wr-outcome-right">
+              <span class="wr-outcome-icon">✓</span>
+              <p><strong>Better outcome. Real leadership.</strong> The right person, matched to the right problem, operating with the authority and context to deliver lasting impact.</p>
+            </div>
+          </div>
+        </div>
+        <div class="wr-cta reveal">
+          <a class="button button-primary" href="intake.html">Share your problem</a>
+          <a class="button button-secondary" href="#process">See how matching works</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         SECTION 4: Why Fractionalty (was 3)
+    ═══════════════════════════════════ -->
+    <section class="snap-section section section-gradient" id="alternative">
+      <div class="site-shell">
+        <div class="section-heading split reveal">
+          <div>
+            <p class="eyebrow">The alternative</p>
+            <h2>Not Freelancers. Not Consultants. Embedded Leaders.</h2>
+          </div>
+          <p>
+            Fractionalty matches businesses with vetted fractional CXOs who step into the problem,
+            bring strategic judgment, and help drive execution where it matters most.
+          </p>
+        </div>
+        <div class="proof-grid stagger">
+          <article class="panel panel-dark">
+            <p class="panel-label">Problem-led matching</p>
+            <h3>We start with the business problem, not a job title.</h3>
+          </article>
+          <article class="panel panel-accent">
+            <p class="panel-label">Vetted leadership</p>
+            <h3>Every match is built around credibility, context, and fit.</h3>
+          </article>
+          <article class="panel panel-light">
+            <p class="panel-label">Embedded execution</p>
+            <h3>The right leader doesn't just advise — they move the business forward.</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         SECTION 4: How It Works
+    ═══════════════════════════════════ -->
+    <section class="snap-section section" id="process">
+      <div class="site-shell">
+        <div class="section-heading reveal">
+          <p class="eyebrow">How it works</p>
+          <h2>From Problem to Embedded Leadership</h2>
+          <p>The process is designed to feel intelligent, high-trust, and easy to move through.</p>
+        </div>
+        <div class="slideshow reveal" data-slideshow>
+          <div class="slideshow-stage">
+            <article class="slide-visual is-active" data-slide-panel="01">
+              <p class="slide-kicker">01 · Intake</p>
+              <h3>Tell us what's not working.</h3>
+              <p>Describe your business challenge in plain language. No perfect brief required.</p>
+              <div class="slide-mini-card">
+                <span>Signals captured</span>
+                <strong>Urgency, context, outcomes</strong>
+              </div>
+            </article>
+            <article class="slide-visual" data-slide-panel="02">
+              <p class="slide-kicker">02 · Scoping</p>
+              <h3>We scope the leadership gap.</h3>
+              <p>The problem gets translated into a clear mandate with the right ownership level.</p>
+              <div class="slide-mini-card">
+                <span>Mandate defined</span>
+                <strong>CXO scope, cadence, fit</strong>
+              </div>
+            </article>
+            <article class="slide-visual" data-slide-panel="03">
+              <p class="slide-kicker">03 · Matching</p>
+              <h3>We match the right CXO.</h3>
+              <p>Fractionalty identifies a leader based on functional depth, context, and alignment.</p>
+              <div class="slide-mini-card">
+                <span>Selection criteria</span>
+                <strong>Credibility, context, ownership</strong>
+              </div>
+            </article>
+            <article class="slide-visual" data-slide-panel="04">
+              <p class="slide-kicker">04 · Execution</p>
+              <h3>Execution begins with clarity.</h3>
+              <p>The engagement starts with explicit expectations and a leader who delivers.</p>
+              <div class="slide-mini-card">
+                <span>Operating mode</span>
+                <strong>Embedded leadership, real progress</strong>
+              </div>
+            </article>
+          </div>
+          <div class="slideshow-rail">
+            <button class="slide-step is-active" type="button" data-slide-target="01">
+              <span class="step-number">01</span>
+              <span class="slide-step-copy">
+                <strong>Tell us what's not working</strong>
+                <span>Share the challenge — even if you're not sure what role you need.</span>
+              </span>
+            </button>
+            <button class="slide-step" type="button" data-slide-target="02">
+              <span class="step-number">02</span>
+              <span class="slide-step-copy">
+                <strong>We scope the leadership gap</strong>
+                <span>We translate the problem into the leadership mandate you need.</span>
+              </span>
+            </button>
+            <button class="slide-step" type="button" data-slide-target="03">
+              <span class="step-number">03</span>
+              <span class="slide-step-copy">
+                <strong>We match the right CXO</strong>
+                <span>A vetted leader with the right depth and engagement fit.</span>
+              </span>
+            </button>
+            <button class="slide-step" type="button" data-slide-target="04">
+              <span class="step-number">04</span>
+              <span class="slide-step-copy">
+                <strong>Execution begins</strong>
+                <span>Clear ownership, defined expectations, real progress.</span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <p class="process-note reveal">
+          AI-assisted intake and matching, grounded in human judgment and business context.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         SECTION 5: Leadership Areas (was 4)
+    ═══════════════════════════════════ -->
+    <section class="snap-section section" id="leadership">
+      <div class="site-shell">
+        <div class="section-heading split reveal">
+          <div>
+            <p class="eyebrow">Leadership areas</p>
+            <h2>Leadership You Can Access</h2>
+          </div>
+          <p>We begin with leadership needs that are common, urgent, and hard to hire full-time.</p>
+        </div>
+        <div class="leadership-grid stagger">
+          <article class="leader-card">
+            <span class="leader-type">CFO</span>
+            <p>Fundraising readiness, financial discipline, forecasting, governance, investor confidence.</p>
+          </article>
+          <article class="leader-card">
+            <span class="leader-type">CMO</span>
+            <p>Growth strategy, go-to-market clarity, brand direction, demand creation.</p>
+          </article>
+          <article class="leader-card">
+            <span class="leader-type">CHRO</span>
+            <p>Org design, leadership hiring, people systems, culture building at scale.</p>
+          </article>
+          <article class="leader-card">
+            <span class="leader-type">CTO</span>
+            <p>Technology leadership, product alignment, systems thinking, execution leverage.</p>
+          </article>
+        </div>
+        <p class="section-close reveal">
+          Not sure which function fits? Start with the problem. We'll help scope the role.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         SECTION 6: For Executives CTA (PROMINENT)
+    ═══════════════════════════════════ -->
+    <section class="snap-section exec-cta-section" id="executives">
+      <div class="site-shell">
+        <div class="exec-cta-inner">
+          <div class="exec-cta-copy">
+            <p class="eyebrow reveal">For Executives</p>
+            <h2 class="reveal">Your Expertise Deserves the Right Stage</h2>
+            <p class="hero-text reveal">
+              Join Fractionalty as a vetted fractional CXO. Work on serious business problems
+              with founders who need real leadership — not just advice.
+            </p>
+            <div class="exec-cta-actions reveal">
+              <a class="button button-light" href="executives.html">Join as an Executive</a>
+              <a class="button button-outline-light" href="executives.html#how-it-works">Learn More</a>
+            </div>
+          </div>
+          <div class="exec-cta-stats stagger">
+            <div class="exec-stat-card">
+              <div class="stat-icon">🎯</div>
+              <h4>Problem-Led Matching</h4>
+              <p>Matched to real business challenges, not generic mandates.</p>
+            </div>
+            <div class="exec-stat-card">
+              <div class="stat-icon">🏗️</div>
+              <h4>Back-Office Support</h4>
+              <p>We handle contracts, scheduling, and engagement logistics.</p>
+            </div>
+            <div class="exec-stat-card">
+              <div class="stat-icon">🤝</div>
+              <h4>Quality Founders</h4>
+              <p>Work with vetted startups and SMBs committed to execution.</p>
+            </div>
+            <div class="exec-stat-card">
+              <div class="stat-icon">📈</div>
+              <h4>Portfolio Growth</h4>
+              <p>Build a portfolio of engagements across industries and stages.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         SECTION 7: Trust
+    ═══════════════════════════════════ -->
+    <section class="snap-section section" id="trust">
+      <div class="site-shell">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Trust</p>
+          <h2>Built for High-Stakes Decisions</h2>
+        </div>
+        <div class="trust-layout reveal">
+          <div class="trust-stack">
+            <article class="trust-card">
+              <h3>Vetted talent</h3>
+              <p>Credibility matters when the role influences business direction, investors, people, or execution.</p>
+            </article>
+            <article class="trust-card">
+              <h3>Structured matching</h3>
+              <p>We don't throw profiles at you. We work backward from the business problem.</p>
+            </article>
+            <article class="trust-card">
+              <h3>Outcome orientation</h3>
+              <p>The goal isn't access. The goal is progress on the problem that led you here.</p>
+            </article>
+          </div>
+          <aside class="proof-aside">
+            <p class="aside-label">Founder note</p>
+            <h3>You Don't Need a Perfect Brief</h3>
+            <p>Many founders know something is breaking before they know what leader they need. That's normal.</p>
+            <ul class="micro-list">
+              <li>Bring the business problem</li>
+              <li>We help define the leadership need</li>
+              <li>The process stays calm and structured</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════
+         SECTION 8: Final CTA + Footer
+    ═══════════════════════════════════ -->
+    <section class="snap-section section" id="cta">
+      <div class="site-shell">
+        <div class="cta-panel reveal">
+          <p class="eyebrow">Start here</p>
+          <h2>Know the problem but not the role? That's exactly where we help.</h2>
+          <div class="hero-actions">
+            <a class="button button-primary" href="intake.html">Tell us your problem</a>
+            <a class="button button-secondary" href="#process">See how it works</a>
+          </div>
+        </div>
+
+        <footer class="footer">
+          <div>
+            <p class="brand-wordmark" style="font-weight: 800;">Fractionalty</p>
+            <p class="footer-copy">Embedded leadership for outcomes and ownership.</p>
+          </div>
+          <div class="footer-links">
+            <a href="#process">How It Works</a>
+            <a href="#leadership">Leadership</a>
+            <a href="executives.html">For Executives</a>
+            <a href="intake.html">Get Started</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+  </div><!-- end .site-scroll -->
+
+  <script src="script.js"></script>
+</body>
+</html>

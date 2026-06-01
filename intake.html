@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intake — Fractionalty</title>
+  <meta name="description" content="Share your business challenge with Fractionalty and start the structured matching process for embedded leadership.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8f8f6;
+      --surface: #ffffff;
+      --text: #180A4B;
+      --text-soft: rgba(24, 10, 75, 0.65);
+      --line: rgba(24, 10, 75, 0.12);
+      --accent: #180A4B;
+      --accent-light: #2d1a6b;
+      --accent-muted: rgba(24, 10, 75, 0.06);
+      --white: #ffffff;
+      --shadow: 0 2px 20px rgba(24, 10, 75, 0.06);
+      --shadow-lg: 0 8px 40px rgba(24, 10, 75, 0.1);
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --success: #10B981;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0d0620;
+      --surface: #180A4B;
+      --text: #f8f8f6;
+      --text-soft: rgba(248, 248, 246, 0.65);
+      --line: rgba(248, 248, 246, 0.12);
+      --accent: #f8f8f6;
+      --accent-light: #ffffff;
+      --accent-muted: rgba(248, 248, 246, 0.08);
+      --white: #180A4B;
+      --shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+
+    /* ── Header ── */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0;
+      position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+      width: min(calc(100% - 48px), 1200px);
+      z-index: 100; background: transparent;
+    }
+    .topbar.is-scrolled {
+      background: rgba(248, 248, 246, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+    }
+    [data-theme="dark"] .topbar.is-scrolled { background: rgba(13, 6, 32, 0.88); }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
+    .brand-mark { width: 28px; height: 28px; border-radius: 6px; background: var(--accent); }
+    .nav { display: flex; align-items: center; gap: 6px; }
+    .nav a { padding: 10px 16px; font-size: 0.9rem; font-weight: 500; color: var(--text-soft); border-radius: 8px; transition: all 0.2s ease; }
+    .nav a:hover { color: var(--text); background: var(--accent-muted); }
+    .nav-cta { background: var(--accent) !important; color: var(--white) !important; margin-left: 8px; }
+    .nav-cta:hover { background: var(--accent-light) !important; }
+    .theme-toggle {
+      width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%;
+      background: var(--surface); color: var(--text); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; margin-left: 12px;
+      transition: all 0.3s ease; flex-shrink: 0;
+    }
+    .theme-toggle:hover { background: var(--accent-muted); transform: scale(1.05); }
+    .theme-toggle .icon-sun, .theme-toggle .icon-moon { width: 18px; height: 18px; }
+    [data-theme="dark"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon, :root:not([data-theme]) .icon-moon { display: none; }
+    .menu-toggle { display: none; padding: 10px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); font-weight: 600; cursor: pointer; }
+
+    /* ── Shell ── */
+    .site-shell {
+      width: min(calc(100% - 48px), 1200px);
+      margin: 0 auto; position: relative; z-index: 2;
+    }
+
+    /* ── Intake Layout ── */
+    .intake-main { padding: 120px 0 80px; }
+    .intake-container {
+      max-width: 680px; margin: 0 auto;
+    }
+
+    .step-tag {
+      display: inline-block; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); background: rgba(240, 165, 0, 0.1);
+      border-radius: 999px; padding: 5px 14px; margin-bottom: 20px;
+    }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
+    h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+    .subtitle { font-size: 1rem; color: var(--text-soft); line-height: 1.65; margin-bottom: 28px; }
+
+    /* ── Steps ── */
+    .step { display: none; animation: fadeUp 0.4s ease both; }
+    .step.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Progress ── */
+    .progress-wrap {
+      height: 3px; background: var(--line); border-radius: 999px;
+      margin-bottom: 32px; overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%; background: var(--accent); border-radius: 999px;
+      transition: width 0.5s cubic-bezier(.4,0,.2,1); width: 0%;
+    }
+
+    /* ── Form Fields ── */
+    .field { margin-bottom: 24px; }
+    label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+    label .hint { font-weight: 400; color: var(--text-soft); font-size: 0.8rem; margin-left: 6px; }
+
+    input[type="text"], input[type="email"], textarea {
+      width: 100%; padding: 14px 16px;
+      border: 1px solid var(--line); border-radius: var(--radius-sm);
+      font-family: "Manrope", sans-serif; font-size: 0.95rem; color: var(--text);
+      background: var(--bg); outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--accent); box-shadow: 0 0 0 3px rgba(24,10,75,0.08);
+    }
+    textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+    /* ── Buttons ── */
+    .btn-row { display: flex; align-items: center; justify-content: space-between; margin-top: 32px; gap: 12px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 50px; padding: 0 28px; border-radius: 999px;
+      font-weight: 600; font-size: 0.9rem; border: 2px solid transparent;
+      cursor: pointer; transition: all 0.25s ease;
+    }
+    .button:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .button-primary {
+      background: var(--accent); color: var(--white); border-color: var(--accent); flex: 1;
+    }
+    .button-primary:hover { background: var(--accent-light); }
+    .button-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+    .button-ghost {
+      background: transparent; color: var(--text-soft); border-color: var(--line);
+    }
+    .button-ghost:hover { color: var(--text); border-color: var(--text); }
+    /* skip link */
+    .skip-link {
+      display: block; text-align: center; margin-top: 20px;
+      font-size: 0.82rem; color: var(--text-soft); cursor: pointer;
+      text-decoration: underline; text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+    .skip-link:hover { color: var(--text); }
+
+    /* simple form */
+    .simple-form-select {
+      width: 100%; padding: 14px 16px;
+      border: 1px solid var(--line); border-radius: var(--radius-sm);
+      font-family: "Manrope", sans-serif; font-size: 0.95rem; color: var(--text);
+      background: var(--bg); outline: none; appearance: none; cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .simple-form-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(24,10,75,0.08); }
+
+    /* ── Thinking Bubbles ── */
+    .thinking-bubble {
+      display: none; align-items: flex-start; gap: 10px;
+      padding: 12px 16px; background: var(--accent-muted); border-radius: var(--radius-sm);
+      font-size: 0.85rem; color: var(--text); font-style: italic; line-height: 1.5;
+      margin-bottom: 10px; animation: fadeUp 0.3s ease both;
+    }
+    .thinking-bubble.visible { display: flex; }
+    .thinking-bubble .tb-icon { font-size: 1rem; flex-shrink: 0; }
+
+    /* ── Character Counter ── */
+    .char-counter { text-align: right; font-size: 0.75rem; color: var(--text-soft); margin-top: 6px; }
+    .char-counter.good { color: var(--success); }
+    .char-counter.warn { color: var(--gold); }
+
+    /* ── Summary Cards ── */
+    .summary-card {
+      background: var(--accent-muted); border-radius: var(--radius-sm);
+      padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--accent);
+    }
+    .summary-card .sc-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-soft); margin-bottom: 6px;
+    }
+    .summary-card .sc-text { font-size: 0.9rem; color: var(--text); line-height: 1.6; }
+
+    /* ── Refined Summary ── */
+    .refined-summary {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius-md); padding: 24px 28px; margin: 16px 0;
+    }
+    .refined-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+    }
+    .refined-text { font-size: 1rem; color: var(--text); line-height: 1.6; font-weight: 600; }
+    .refined-text strong { color: var(--accent); }
+
+    /* ── Refine Chips ── */
+    .refine-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .refine-chip {
+      padding: 10px 18px; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; border: 2px solid var(--line); background: var(--surface);
+      color: var(--text-soft); transition: all 0.18s;
+    }
+    .refine-chip:hover { border-color: var(--accent); color: var(--text); }
+    .refine-chip.active { border-color: var(--success); background: #ECFDF5; color: var(--success); }
+    .refine-chip.active-adjust { border-color: var(--gold); background: #FFF8E6; color: #B07800; }
+    .refine-chip.active-rephrase { border-color: #EF4444; background: #FEF2F2; color: #EF4444; }
+    .adjust-field { display: none; margin-top: 14px; }
+    .adjust-field.show { display: block; }
+
+    /* ── Domain Badge ── */
+    .domain-detect {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; background: var(--accent-muted); border-radius: 999px;
+      font-size: 0.8rem; font-weight: 600; color: var(--text); margin-bottom: 16px;
+    }
+
+    /* ── Skill Cards ── */
+    .skill-cards { display: flex; flex-direction: column; gap: 10px; }
+    .skill-card {
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius-md);
+      cursor: pointer; transition: all 0.2s; user-select: none; background: var(--surface);
+    }
+    .skill-card:hover { border-color: var(--accent); background: var(--accent-muted); transform: translateY(-1px); }
+    .skill-card.selected {
+      border-color: var(--accent); background: var(--accent-muted);
+      box-shadow: 0 2px 12px rgba(24,10,75,0.1);
+    }
+    .skill-icon { font-size: 1.5rem; flex-shrink: 0; width: 36px; text-align: center; }
+    .skill-info { flex: 1; }
+    .skill-info strong { display: block; font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .skill-info span { font-size: 0.85rem; color: var(--text-soft); line-height: 1.5; }
+    .skill-check {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 2px solid var(--line); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+    .skill-card.selected .skill-check { background: var(--accent); border-color: var(--accent); }
+    .skill-card.selected .skill-check::after {
+      content: '✓'; color: var(--white); font-size: 0.75rem; font-weight: 700;
+    }
+
+    /* ── Match Reveal ── */
+    .reveal-loader {
+      display: none; flex-direction: column; align-items: center; padding: 40px 0;
+    }
+    .loader-ring {
+      width: 56px; height: 56px; border: 4px solid var(--line);
+      border-top-color: var(--accent); border-radius: 50%;
+      animation: spin 1s linear infinite; margin-bottom: 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-text { font-size: 0.95rem; color: var(--text-soft); font-style: italic; }
+    .match-wrap { text-align: center; display: none; }
+    .match-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: var(--white); padding: 8px 20px;
+      border-radius: 999px; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .match-name { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+    .match-tagline { font-size: 0.95rem; color: var(--text-soft); line-height: 1.7; max-width: 440px; margin: 0 auto 20px; }
+    .match-box {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius-md); padding: 24px 28px; margin: 20px 0; text-align: left;
+    }
+    .match-box h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; }
+    .match-skill-tag {
+      display: inline-block; padding: 5px 14px; border-radius: 999px;
+      background: var(--accent); color: var(--white); font-size: 0.75rem;
+      font-weight: 600; margin: 3px 4px;
+    }
+
+    /* ── Error ── */
+    .error-msg { font-size: 0.8rem; color: #EF4444; margin-top: 6px; display: none; }
+    .error-msg.show { display: block; }
+
+    /* ── Footer ── */
+    .footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 40px 0 60px; border-top: 1px solid var(--line); margin-top: 60px;
+    }
+    .footer-copy { color: var(--text-soft); font-size: 0.85rem; margin-top: 8px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: var(--text-soft); font-size: 0.9rem; transition: color 0.2s ease; }
+    .footer-links a:hover { color: var(--text); }
+
+    .row { display: flex; gap: 16px; }
+    .row .field { flex: 1; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .site-shell { width: calc(100% - 32px); }
+      .topbar { padding: 16px 0; }
+      .menu-toggle { display: block; }
+      .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); padding: 16px; border-bottom: 1px solid var(--line); flex-direction: column; }
+      .nav.nav-open { display: flex; }
+      .nav a { text-align: center; padding: 12px; }
+      .nav-cta { margin-left: 0; margin-top: 8px; }
+      .row { flex-direction: column; gap: 0; }
+      .footer { flex-direction: column; text-align: center; gap: 24px; }
+      .intake-main { padding: 100px 0 60px; }
+      h1 { font-size: 1.6rem; }
+      .refined-summary { padding: 18px 20px; }
+      .match-box { padding: 18px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="index.html" aria-label="Fractionalty home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-wordmark">Fractionalty</span>
+    </a>
+    <nav class="nav" id="site-nav">
+      <a href="index.html#process">How It Works</a>
+      <a href="index.html#trust">Trust</a>
+      <a class="nav-cta" href="index.html">Back to Home</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+  </header>
+
+  <main class="intake-main">
+    <div class="intake-container">
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <!-- STEP 1: Business -->
+      <div class="step active" id="step-1">
+        <div class="step-tag">Step 1 of 5 · Your Business</div>
+        <h1>Before we find the right leader, let's understand your world.</h1>
+        <p class="subtitle">Tell us about your company — what you do, size, stage. The more we know, the sharper the match.</p>
+        <div class="field">
+          <label>Describe your business in your own words</label>
+          <textarea id="business_desc" placeholder="e.g. We're a B2B SaaS company doing ₹15 Cr ARR in the SME lending space. We've grown fast but our unit economics need work — we don't have a finance leader who can talk to the board…" style="min-height:140px;"></textarea>
+          <div class="char-counter" id="biz-counter">0 characters</div>
+          <div class="error-msg" id="err-business">Please share at least a few sentences about your business</div>
+        </div>
+        <div class="btn-row">
+          <a class="button button-ghost" href="index.html">← Back</a>
+          <button class="button button-primary" data-validate="1">Continue →</button>
+        </div>
+        <span class="skip-link" id="btn-skip">Prefer a quick form instead? Skip the guided journey →</span>
+      </div>
+
+      <!-- SIMPLE FORM (skip path) -->
+      <div class="step" id="step-simple">
+        <div class="step-tag">Quick Form</div>
+        <h1>Tell us what you need.</h1>
+        <p class="subtitle">Just the essentials. We'll take it from here.</p>
+        <div class="row">
+          <div class="field">
+            <label>Company Name</label>
+            <input type="text" id="s-company" placeholder="e.g. FinCore Technologies">
+            <div class="error-msg" id="serr-company">Please enter your company name</div>
+          </div>
+          <div class="field">
+            <label>Your Email</label>
+            <input type="email" id="s-email" placeholder="you@company.com">
+            <div class="error-msg" id="serr-email">Please enter a valid email</div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Phone / WhatsApp</label>
+          <input type="text" id="s-mobile" placeholder="+91 98765 43210">
+          <div class="error-msg" id="serr-mobile">Please enter your contact number</div>
+        </div>
+        <div class="field">
+          <label>What's the business problem?</label>
+          <textarea id="s-problem" placeholder="Describe what's breaking, slowing down, or feels too important to leave unresolved…" style="min-height:120px;"></textarea>
+          <div class="error-msg" id="serr-problem">Please describe your problem</div>
+        </div>
+        <div class="field">
+          <label>What leadership skill do you think you need? <span class="hint">your best guess is fine</span></label>
+          <select class="simple-form-select" id="s-skill">
+            <option value="">Select if known…</option>
+            <option value="cfo">Finance / CFO</option>
+            <option value="cto">Technology / CTO</option>
+            <option value="cmo">Marketing &amp; Growth / CMO</option>
+            <option value="chro">People &amp; HR / CHRO</option>
+            <option value="coo">Operations / COO</option>
+            <option value="strategy">Strategy / Corporate Development</option>
+            <option value="unsure">Not sure yet</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button class="button button-ghost" id="btn-back-to-journey">← Back to guided journey</button>
+          <button class="button button-primary" id="btn-simple-submit">Submit →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Problem -->
+      <div class="step" id="step-2">
+        <div class="step-tag">Step 2 of 5 · The Challenge</div>
+        <h1>What's the problem you're trying to solve?</h1>
+        <p class="subtitle">Be as specific as you can. What's broken, stuck, or missing?</p>
+        <div class="field">
+          <label>Describe the problem or gap</label>
+          <textarea id="problem_desc" placeholder="e.g. We need someone to overhaul our finance function — we don't have a proper CFO and our board is asking hard questions about burn rate. Our accounting team is junior…" style="min-height:120px;"></textarea>
+          <div class="char-counter" id="prob-counter">0 characters</div>
+          <div class="error-msg" id="err-problem">Please describe the challenge you're facing</div>
+        </div>
+        <div class="thinking-bubble" id="bubble-1"><div class="tb-icon">💬</div>What happens if you don't solve this in the next 3 months?</div>
+        <div class="thinking-bubble" id="bubble-2"><div class="tb-icon">💬</div>Have you tried solving this before? What happened?</div>
+        <div class="thinking-bubble" id="bubble-3"><div class="tb-icon">💬</div>Who in your team is closest to solving this today?</div>
+        <div class="field" style="margin-top:8px;">
+          <label>Anything else you want to add? <span class="hint">from the prompts above</span></label>
+          <textarea id="problem_extra" placeholder="Feel free to expand…" style="min-height:80px;"></textarea>
+        </div>
+        <div class="btn-row">
+          <button class="button button-ghost" data-goto="1">← Back</button>
+          <button class="button button-primary" data-validate="2">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Sharpen -->
+      <div class="step" id="step-3">
+        <div class="step-tag">Step 3 of 5 · Sharpen</div>
+        <h1>Let's sharpen this together.</h1>
+        <p class="subtitle">Here's how we understand your situation, based on what you've shared.</p>
+
+        <div class="summary-card">
+          <div class="sc-label">Your Business</div>
+          <div class="sc-text" id="sum-business"></div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">The Challenge</div>
+          <div class="sc-text" id="sum-problem"></div>
+        </div>
+
+        <div class="refined-summary" id="refined-box">
+          <div class="refined-label">✦ Refined Problem Statement</div>
+          <div class="refined-text" id="refined-text">
+            <span style="color:var(--text-soft);font-style:italic;">Analysing…</span>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;">
+          <label style="margin-bottom:10px;">Does this sound right?</label>
+          <div class="refine-chips" id="refine-chips">
+            <div class="refine-chip" id="ref-yes" data-refine="yes">✅ Yes, that's the core issue</div>
+            <div class="refine-chip" id="ref-adjust" data-refine="adjust">🔄 Close, but I'd adjust it</div>
+            <div class="refine-chip" id="ref-rephrase" data-refine="rephrase">❌ Not quite — let me rephrase</div>
+          </div>
+        </div>
+
+        <div class="adjust-field" id="adjust-field">
+          <label>What would you change?</label>
+          <textarea id="adjust_text" placeholder="e.g. It's less about financial controls and more about fundraising readiness…" style="min-height:80px;"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button class="button button-ghost" data-goto="2">← Back</button>
+          <button class="button button-primary" id="btn-sharpen-next" disabled>Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Skill Selection -->
+      <div class="step" id="step-4">
+        <div class="step-tag">Step 4 of 5 · The Leader</div>
+        <h1>What kind of leadership do you need?</h1>
+        <p class="subtitle" id="skill-subtitle">Based on your challenge, here are the roles that could help. Select up to 3.</p>
+        <div class="domain-detect" id="domain-badge"></div>
+        <div class="skill-cards" id="skill-cards"></div>
+        <div class="error-msg" id="err-skills">Please select at least one role</div>
+        <div class="btn-row">
+          <button class="button button-ghost" data-goto="3">← Back</button>
+          <button class="button button-primary" data-validate="4">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: Contact Details -->
+      <div class="step" id="step-5">
+        <div class="step-tag">Step 5 of 5 · Your Details</div>
+        <h1>Almost done. Let's get you connected.</h1>
+        <p class="subtitle">Share your details and we'll match you with the right fractional leader within 48 hours.</p>
+        <div class="row">
+          <div class="field">
+            <label>Your Name</label>
+            <input type="text" id="full_name" placeholder="e.g. Priya Mehta">
+            <div class="error-msg" id="err-name">Please enter your name</div>
+          </div>
+          <div class="field">
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="you@company.com">
+            <div class="error-msg" id="err-email">Please enter a valid email</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label>Company Name</label>
+            <input type="text" id="company_name" placeholder="e.g. FinCore Technologies">
+            <div class="error-msg" id="err-company">Please enter your company name</div>
+          </div>
+          <div class="field">
+            <label>Phone / WhatsApp</label>
+            <input type="text" id="mobile" placeholder="+91 98765 43210">
+            <div class="error-msg" id="err-mobile">Please enter your mobile number</div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Anything else you'd like us to know? <span class="hint">optional</span></label>
+          <textarea id="extra_notes" placeholder="e.g. Timeline, budget range, specific requirements…" style="min-height:80px;"></textarea>
+        </div>
+        <div class="btn-row">
+          <button class="button button-ghost" data-goto="4">← Back</button>
+          <button class="button button-primary" id="btn-reveal">Get My Expert Match →</button>
+        </div>
+      </div>
+
+      <!-- STEP 6: Match Reveal -->
+      <div class="step" id="step-6">
+        <div class="reveal-loader" id="reveal-loader">
+          <div class="loader-ring"></div>
+          <div class="loader-text" id="loader-text">Analysing your business needs…</div>
+        </div>
+        <div class="match-wrap" id="match-content">
+          <div class="match-badge">
+            <span id="match-icon">🎯</span>
+            <span>Your Expert Match</span>
+          </div>
+          <div class="match-name" id="match-name"></div>
+          <div class="match-tagline" id="match-tagline"></div>
+          <div class="match-box">
+            <h3>What we'll look for</h3>
+            <div id="match-skills"></div>
+            <div style="margin-top:14px;font-size:0.9rem;color:var(--text-soft);line-height:1.6;" id="match-summary-text"></div>
+          </div>
+          <button class="button button-primary" id="btn-submit" style="width:100%;">Submit &amp; Get Matched →</button>
+          <p style="font-size:0.8rem;color:var(--text-soft);text-align:center;margin-top:10px;">We'll review and reach out within 48 hours with expert recommendations.</p>
+        </div>
+      </div>
+
+      <!-- STEP 7: Thank You -->
+      <div class="step" id="step-7" style="text-align:center;">
+        <div style="font-size:3.5rem;margin-bottom:20px;">🎉</div>
+        <div class="step-tag">You're all set</div>
+        <h1 style="margin-bottom:16px;">We're on it.</h1>
+        <p class="subtitle" style="max-width:420px;margin:0 auto 28px;">
+          Your submission is in. Our team will review your needs and reach out within 48 hours with the best-matched fractional leaders.
+        </p>
+        <a class="button button-primary" href="index.html" style="width:auto;display:inline-flex;">Back to Fractionalty →</a>
+        <p style="font-size:0.85rem;color:var(--text-soft);margin-top:20px;">Look out for an email from the Fractionalty team</p>
+      </div>
+
+      <!-- STEP 8: Simple Thank You -->
+      <div class="step" id="step-8" style="text-align:center;">
+        <div style="font-size:3.5rem;margin-bottom:20px;">✅</div>
+        <div class="step-tag">Received</div>
+        <h1 style="margin-bottom:16px;">Got it. We'll be in touch.</h1>
+        <p class="subtitle" style="max-width:420px;margin:0 auto 28px;">
+          We've received your details. Someone from the Fractionalty team will reach out within 48 hours to understand your needs better.
+        </p>
+        <a class="button button-primary" href="index.html" style="width:auto;display:inline-flex;">Back to Fractionalty →</a>
+        <p style="font-size:0.85rem;color:var(--text-soft);margin-top:20px;">Look out for an email from the Fractionalty team</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="max-width:680px;margin:0 auto;padding-left:0;padding-right:0;">
+    <div>
+      <p class="brand-wordmark" style="font-weight:800;">Fractionalty</p>
+      <p class="footer-copy">Embedded leadership for outcomes and ownership.</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#process">How It Works</a>
+      <a href="executives.html">For Executives</a>
+      <a href="index.html">Home</a>
+    </div>
+  </footer>
+
+<script>
+// ── State ──
+var state = { currentStep: 1, totalSteps: 5, data: {}, detectedDomain: 'default', selectedRefine: null };
+
+// ── Skill Cards ──
+var SKILL_CARDS = {
+  finance: [
+    { icon: '💰', title: 'Fractional CFO / Finance Lead', desc: 'Financial strategy, controls, compliance, and board reporting.', val: 'cfo_finance' },
+    { icon: '💼', title: 'Fundraising Strategist', desc: 'Capital raises, investor relations, term sheet negotiation.', val: 'fundraising' },
+    { icon: '📒', title: 'Audit & Compliance Lead', desc: 'Statutory compliance, IndAS/IFRS, GST, audit readiness.', val: 'compliance' }
+  ],
+  technology: [
+    { icon: '💻', title: 'CTO / Technical Lead', desc: 'Technical strategy, architecture, engineering leadership.', val: 'cto_tech' },
+    { icon: '🚀', title: 'Product Strategist', desc: 'Product vision, roadmap, feature prioritization.', val: 'product' },
+    { icon: '📊', title: 'Data & Analytics Lead', desc: 'Data infrastructure, BI tooling, data-driven decisions.', val: 'data' }
+  ],
+  marketing: [
+    { icon: '📈', title: 'Growth / GTM Lead', desc: 'Go-to-market strategy, performance marketing, revenue ops.', val: 'growth_gtm' },
+    { icon: '✨', title: 'Brand & Content Strategist', desc: 'Brand positioning, messaging, category creation.', val: 'brand' }
+  ],
+  people: [
+    { icon: '👥', title: 'HR / People Strategist', desc: 'Org design, culture building, people operations at scale.', val: 'hr_people' },
+    { icon: '🎯', title: 'Talent Acquisition Lead', desc: 'Senior hiring, talent pipelines, compensation architecture.', val: 'talent' }
+  ],
+  operations: [
+    { icon: '⚙️', title: 'COO / Operations Lead', desc: 'Process design, cross-functional coordination, scaling.', val: 'coo_ops' },
+    { icon: '🔧', title: 'Process & Systems Architect', desc: 'ERP, workflow automation, operational infrastructure.', val: 'process_systems' }
+  ],
+  default: [
+    { icon: '💰', title: 'Fractional CFO', desc: 'Financial leadership, controls, and strategic finance.', val: 'cfo' },
+    { icon: '💻', title: 'CTO / Tech Lead', desc: 'Technical architecture and engineering leadership.', val: 'cto' },
+    { icon: '📈', title: 'Growth Lead', desc: 'Marketing, sales, and go-to-market execution.', val: 'growth' },
+    { icon: '👥', title: 'HR Strategist', desc: 'People operations, culture, and talent acquisition.', val: 'hr' },
+    { icon: '⚙️', title: 'COO / Ops Lead', desc: 'Business operations and organizational efficiency.', val: 'coo' },
+    { icon: '♟️', title: 'Strategy Advisor', desc: 'Corporate strategy, M&A, complex business decisions.', val: 'strategy' }
+  ]
+};
+
+// ── Helper ──
+function getVal(id) { return document.getElementById(id).value.trim(); }
+
+// ── Navigation ──
+function goToStep(n) {
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  var el = document.getElementById('step-' + n);
+  if (el) el.classList.add('active');
+  state.currentStep = n;
+  updateProgress(n);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (n === 3) generateRefinedSummary();
+  if (n === 4) renderSkillCards();
+}
+
+function updateProgress(step) {
+  var pct = Math.round((step / state.totalSteps) * 100);
+  document.getElementById('progress-bar').style.width = Math.min(pct, 100) + '%';
+}
+
+// ── Char Counter ──
+function setupCharCounter(inputId, counterId) {
+  var input = document.getElementById(inputId), counter = document.getElementById(counterId);
+  input.addEventListener('input', function() {
+    var len = input.value.length;
+    counter.textContent = len + ' character' + (len !== 1 ? 's' : '');
+    counter.className = 'char-counter' + (len >= 100 ? ' good' : (len > 0 ? ' warn' : ''));
+  });
+}
+setupCharCounter('business_desc', 'biz-counter');
+setupCharCounter('problem_desc', 'prob-counter');
+
+// ── Thinking Bubbles ──
+(function() {
+  var prob = document.getElementById('problem_desc'), shown = false;
+  prob.addEventListener('input', function() {
+    if (prob.value.trim().length >= 15 && !shown) {
+      shown = true;
+      ['bubble-1','bubble-2','bubble-3'].forEach(function(id, i) {
+        setTimeout(function() { document.getElementById(id).classList.add('visible'); }, (i + 1) * 800);
+      });
+    }
+  });
+})();
+
+// ── Validation ──
+function showErr(id, show) { var el = document.getElementById(id); if (el) el.classList.toggle('show', show); }
+
+function validateAndNext(step) {
+  var valid = true;
+  if (step === 1) { var biz = getVal('business_desc'); showErr('err-business', biz.length < 20); if (biz.length < 20) valid = false; }
+  if (step === 2) { var prob = getVal('problem_desc'); showErr('err-problem', prob.length < 20); if (prob.length < 20) valid = false; }
+  if (step === 3) {
+    if (!state.selectedRefine) { alert('Please let us know if the problem statement sounds right.'); return; }
+    if (state.selectedRefine === 'rephrase') { goToStep(2); return; }
+  }
+  if (step === 4) { var sel = getSelectedSkills(); showErr('err-skills', sel.length === 0); if (!sel.length) valid = false; }
+  if (step === 5) {
+    var name = getVal('full_name'), email = getVal('email'), company = getVal('company_name'), mobile = getVal('mobile');
+    showErr('err-name', !name); showErr('err-email', !email || !/\S+@\S+\.\S+/.test(email));
+    showErr('err-company', !company); showErr('err-mobile', !mobile);
+    if (!name || !email || !/\S+@\S+\.\S+/.test(email) || !company || !mobile) valid = false;
+    else { generateReveal(); return; }
+  }
+  if (valid) goToStep(step + 1);
+}
+
+function getSelectedSkills() {
+  return Array.from(document.querySelectorAll('.skill-card.selected')).map(function(c) { return c.dataset.skillVal; });
+}
+
+// ── Domain Detection ──
+function detectDomain(text) {
+  var t = (text || '').toLowerCase();
+  if (/\b(finance|money|cash|burn|cfocfo\b|cfo\b|accounting|bookkeeping|compliance|gst|tds|ind.?as|ifrs|fundraising|fund.?raise|investor|capital|term.?sheet|cap.?table|board.?report|audit|controller|treasury)\b/i.test(t)) return 'finance';
+  if (/\b(tech|technolog|cto\b|platform|product|software|engineering|code|architecture|infrastructure|cloud|aws|devops|developer|sprint|agile|api|database|backend|frontend)\b/i.test(t)) return 'technology';
+  if (/\b(marketing|growth|sales|revenue|brand|campaign|gtm|go.?to.?market|acquisition|content|seo|social.?media|lead.?gen|pipeline|conversion|funnel)\b/i.test(t)) return 'marketing';
+  if (/\b(people|hiring|team|culture|hr\b|human.?resource|talent|org.?design|retention|recruiting|compensation|performance.?review|succession)\b/i.test(t)) return 'people';
+  if (/\b(operations|process|scaling|supply.?chain|logistics|manufacturing|erp|workflow|automation|ops\b|coo\b|efficiency|quality|procurement)\b/i.test(t)) return 'operations';
+  return 'default';
+}
+
+// ── Refined Summary ──
+function generateRefinedSummary() {
+  var biz = getVal('business_desc'), prob = getVal('problem_desc'), extra = getVal('problem_extra');
+  document.getElementById('sum-business').textContent = biz || '(not provided)';
+  document.getElementById('sum-problem').textContent = prob || '(not provided)';
+  state.detectedDomain = detectDomain(biz + ' ' + prob + ' ' + extra);
+
+  var refineText = document.getElementById('refined-text');
+  refineText.innerHTML = '<span style="color:var(--text-soft);font-style:italic;">Analysing…</span>';
+  setTimeout(function() {
+    var domainSummaries = {
+      finance: 'building financial controls and CFO-level oversight',
+      technology: 'establishing technical leadership and product strategy',
+      marketing: 'creating a structured go-to-market and growth engine',
+      people: 'building people infrastructure and leadership capability',
+      operations: 'designing scalable operations and business systems',
+      default: 'bringing in senior strategic leadership to navigate this phase'
+    };
+    var challenge = domainSummaries[state.detectedDomain] || domainSummaries['default'];
+    refineText.innerHTML = 'Based on what you\'ve shared, the core challenge is: <strong>'+ challenge +'</strong>. The business needs someone who can bring structure, experience, and execution to this problem — not just advice.';
+  }, 600);
+
+  state.selectedRefine = null;
+  document.querySelectorAll('.refine-chip').forEach(function(c) { c.className = 'refine-chip'; });
+  document.getElementById('adjust-field').classList.remove('show');
+  document.getElementById('btn-sharpen-next').disabled = true;
+  document.getElementById('btn-sharpen-next').textContent = 'Continue →';
+}
+
+// ── Skill Cards ──
+function renderSkillCards() {
+  var domain = state.detectedDomain || 'default';
+  var cards = SKILL_CARDS[domain] || SKILL_CARDS['default'];
+  var domainLabels = { finance: '💰 Finance detected', technology: '💻 Technology detected', marketing: '📣 Marketing & Growth detected', people: '👥 People & HR detected', operations: '⚙️ Operations detected', default: '🔍 General business challenge' };
+  document.getElementById('domain-badge').textContent = domainLabels[domain] || domainLabels['default'];
+  var container = document.getElementById('skill-cards');
+  container.innerHTML = '';
+  cards.forEach(function(card) {
+    var div = document.createElement('div');
+    div.className = 'skill-card'; div.dataset.skillVal = card.val;
+    div.innerHTML = '<div class="skill-icon">' + card.icon + '</div><div class="skill-info"><strong>' + card.title + '</strong><span>' + card.desc + '</span></div><div class="skill-check"></div>';
+    container.appendChild(div);
+  });
+}
+
+// ── Reveal ──
+function generateReveal() {
+  goToStep(6);
+  document.getElementById('reveal-loader').style.display = 'flex';
+  document.getElementById('match-content').style.display = 'none';
+  var msgs = ['Analysing your business needs…','Identifying the right expertise…','Matching to our expert network…','Preparing your match…'];
+  var idx = 0, msgEl = document.getElementById('loader-text');
+  var timer = setInterval(function() { idx = (idx+1) % msgs.length; msgEl.textContent = msgs[idx]; }, 900);
+  setTimeout(function() { clearInterval(timer); displayMatch(); }, 3000);
+}
+
+function displayMatch() {
+  var domain = state.detectedDomain || 'default', skills = getSelectedSkills();
+  var cards = SKILL_CARDS[domain] || SKILL_CARDS['default'];
+  var domainLabels = { finance: 'Finance & CFO', technology: 'Technology & Product', marketing: 'Marketing & Growth', people: 'People & HR', operations: 'Operations & Scale', default: 'Strategic Leadership' };
+  var dl = domainLabels[domain] || 'Strategic Leadership';
+  document.getElementById('reveal-loader').style.display = 'none';
+  document.getElementById('match-icon').textContent = cards[0] ? cards[0].icon : '🎯';
+  document.getElementById('match-name').textContent = dl + ' Expert';
+  var skillNames = skills.map(function(sv) { for (var i=0;i<cards.length;i++) { if (cards[i].val===sv) return cards[i].title; } return sv; });
+  document.getElementById('match-tagline').textContent = 'Based on your challenge, we\'ll match you with a fractional ' + dl.toLowerCase() + ' expert. You indicated interest in: ' + skillNames.join(', ') + '.';
+  var tagsHTML = skills.map(function(sv) { for (var i=0;i<cards.length;i++) { if (cards[i].val===sv) return '<span class="match-skill-tag">'+cards[i].title+'</span>'; } return '<span class="match-skill-tag">'+sv+'</span>'; }).join('');
+  document.getElementById('match-skills').innerHTML = tagsHTML || '<span style="color:var(--text-soft);">No specific roles selected</span>';
+  document.getElementById('match-summary-text').textContent = 'Our team will review your business description and challenge, then handpick 1-2 fractional leaders from our network who have directly relevant experience. You\'ll hear from us within 48 hours.';
+  document.getElementById('match-content').style.display = 'block';
+  state.data.matchedSkills = skills;
+}
+
+// ── Submit ──
+function submitForm() {
+  state.data.business_desc = getVal('business_desc');
+  state.data.problem_desc = getVal('problem_desc');
+  state.data.problem_extra = getVal('problem_extra');
+  state.data.full_name = getVal('full_name');
+  state.data.email = getVal('email');
+  state.data.company_name = getVal('company_name');
+  state.data.mobile = getVal('mobile');
+  state.data.extra_notes = getVal('extra_notes');
+  state.data.detectedDomain = state.detectedDomain;
+  state.data.refine_selection = state.selectedRefine;
+  state.data.adjust_text = getVal('adjust_text');
+  console.log('Submission:', JSON.stringify(state.data, null, 2));
+  goToStep(7);
+}
+
+// ── Event Delegation ──
+document.addEventListener('click', function(e) {
+  var gotoBtn = e.target.closest('[data-goto]');
+  if (gotoBtn) { goToStep(parseInt(gotoBtn.dataset.goto)); return; }
+  var validateBtn = e.target.closest('[data-validate]');
+  if (validateBtn) { validateAndNext(parseInt(validateBtn.dataset.validate)); return; }
+
+  // Skill card
+  var skillCard = e.target.closest('.skill-card');
+  if (skillCard) {
+    if (skillCard.classList.contains('selected')) { skillCard.classList.remove('selected'); }
+    else { var sel = document.querySelectorAll('.skill-card.selected'); if (sel.length >= 3) return; skillCard.classList.add('selected'); }
+    return;
+  }
+  // Refine chip
+  var refineChip = e.target.closest('.refine-chip');
+  if (refineChip) {
+    var val = refineChip.dataset.refine; state.selectedRefine = val;
+    document.querySelectorAll('.refine-chip').forEach(function(c) { c.className = 'refine-chip'; });
+    var adjField = document.getElementById('adjust-field'), btn = document.getElementById('btn-sharpen-next');
+    if (val === 'yes') { refineChip.classList.add('active'); adjField.classList.remove('show'); btn.disabled = false; }
+    else if (val === 'adjust') { refineChip.classList.add('active-adjust'); adjField.classList.add('show'); btn.disabled = false; }
+    else if (val === 'rephrase') { refineChip.classList.add('active-rephrase'); adjField.classList.remove('show'); btn.disabled = false; btn.textContent = 'Go Back & Rephrase →'; }
+    else { btn.disabled = true; }
+    return;
+  }
+  // Sharpen continue button
+  if (e.target.closest('#btn-sharpen-next')) {
+    var sr = state.selectedRefine;
+    if (!sr) { alert('Please select an option first.'); return; }
+    if (sr === 'yes' || sr === 'adjust') goToStep(4);
+    else if (sr === 'rephrase') goToStep(2);
+    return;
+  }
+});
+
+// ── Final buttons ──
+document.getElementById('btn-reveal').addEventListener('click', function() { validateAndNext(5); });
+document.getElementById('btn-submit').addEventListener('click', submitForm);
+
+// ── Skip to simple form ──
+document.getElementById('btn-skip').addEventListener('click', function() {
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('step-simple').classList.add('active');
+  document.getElementById('progress-bar').style.width = '0%';
+  document.getElementById('step-counter') && (document.getElementById('step-counter').textContent = '');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+document.getElementById('btn-back-to-journey').addEventListener('click', function() {
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('step-1').classList.add('active');
+  updateProgress(1);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+document.getElementById('btn-simple-submit').addEventListener('click', function() {
+  var company = getVal('s-company'), email = getVal('s-email'),
+      mobile = getVal('s-mobile'), problem = getVal('s-problem');
+  var valid = true;
+  var showS = function(id, show) { var el = document.getElementById(id); if (el) el.classList.toggle('show', show); };
+  showS('serr-company', !company); showS('serr-email', !email || !/\S+@\S+\.\S+/.test(email));
+  showS('serr-mobile', !mobile); showS('serr-problem', problem.length < 10);
+  if (!company || !email || !/\S+@\S+\.\S+/.test(email) || !mobile || problem.length < 10) valid = false;
+  if (!valid) return;
+  var simpleData = { company: company, email: email, mobile: mobile, problem: problem, skill: document.getElementById('s-skill').value, source: 'simple_form' };
+  console.log('Simple form submission:', JSON.stringify(simpleData, null, 2));
+  document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('step-8').classList.add('active');
+  document.getElementById('progress-bar').style.width = '100%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Dark Mode ──
+var themeToggle = document.querySelector('.theme-toggle');
+function setTheme(t) { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+var stored = localStorage.getItem('theme');
+var preferred = stored || (window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+setTheme(preferred);
+if (themeToggle) { themeToggle.addEventListener('click', function() { var current = document.documentElement.getAttribute('data-theme'); setTheme(current==='dark'?'light':'dark'); }); }
+
+// ── Topbar scroll ──
+window.addEventListener('scroll', function() { document.getElementById('topbar').classList.toggle('is-scrolled', window.scrollY > 40); }, { passive: true });
+
+// ── Mobile menu ──
+var menuToggle = document.querySelector('.menu-toggle'), nav = document.querySelector('.nav');
+if (menuToggle && nav) {
+  menuToggle.addEventListener('click', function() { var open = nav.classList.toggle('nav-open'); menuToggle.setAttribute('aria-expanded', String(open)); });
+  nav.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', function() { nav.classList.remove('nav-open'); menuToggle.setAttribute('aria-expanded','false'); }); });
+}
+
+updateProgress(1);
+</script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.page{max-width:640px;margin:0 auto;padding:1.5rem 0}
+.header-card{background:#1a237e;border-radius:var(--border-radius-lg);padding:1.5rem 1.75rem;margin-bottom:4px}
+.header-card h1{font-size:20px;font-weight:500;color:#fff;margin-bottom:6px}
+.header-card p{font-size:13px;color:#c5cae9;line-height:1.6}
+.progress-bar{background:var(--color-border-tertiary);height:3px;border-radius:2px;margin-bottom:4px;overflow:hidden}
+.progress-fill{height:100%;background:#1a237e;border-radius:2px;transition:width 0.4s}
+.section-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.5rem 1.75rem;margin-bottom:4px}
+.section-title{font-size:12px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;padding-bottom:10px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.q{margin-bottom:1.25rem}
+.q:last-child{margin-bottom:0}
+.q label{font-size:14px;font-weight:500;color:var(--color-text-primary);display:block;margin-bottom:6px}
+.q .hint{font-size:12px;color:var(--color-text-secondary);margin-bottom:8px}
+.q input[type=text],.q input[type=email],.q textarea,.q select{width:100%;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:9px 12px;font-size:14px;color:var(--color-text-primary);background:var(--color-background-primary);outline:none;font-family:var(--font-sans)}
+.q input[type=text]:focus,.q input[type=email]:focus,.q textarea:focus,.q select:focus{border-color:#1a237e;box-shadow:0 0 0 2px rgba(26,35,126,0.12)}
+.q textarea{resize:vertical;min-height:72px}
+.q select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.radio-group,.check-group{display:flex;flex-direction:column;gap:8px}
+.radio-opt,.check-opt{display:flex;align-items:center;gap:10px;padding:8px 12px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);cursor:pointer;transition:border-color 0.15s,background 0.15s}
+.radio-opt:hover,.check-opt:hover{background:var(--color-background-secondary);border-color:var(--color-border-secondary)}
+.radio-opt.sel,.check-opt.sel{border-color:#1a237e;background:#e8eaf6}
+.radio-opt input,.check-opt input{accent-color:#1a237e;width:15px;height:15px;flex-shrink:0}
+.radio-opt span,.check-opt span{font-size:14px;color:var(--color-text-primary)}
+.req{color:#c62828;margin-left:2px}
+.budget-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.budget-opt{padding:10px 14px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);cursor:pointer;text-align:center;transition:all 0.15s}
+.budget-opt:hover{background:var(--color-background-secondary);border-color:var(--color-border-secondary)}
+.budget-opt.sel{border-color:#1a237e;background:#e8eaf6}
+.budget-opt .bval{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.budget-opt .blbl{font-size:11px;color:var(--color-text-secondary)}
+.footer-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem 1.75rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.submit-btn{background:#1a237e;color:#fff;border:none;border-radius:var(--border-radius-md);padding:10px 28px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font-sans)}
+.submit-btn:hover{background:#283593}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;margin-left:6px;font-weight:500}
+.tag-required{background:#fce4ec;color:#880e4f}
+.tag-optional{background:#f3f4f6;color:var(--color-text-secondary)}
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:1rem 0}
+.char-count{font-size:11px;color:var(--color-text-tertiary);text-align:right;margin-top:3px}
+.step-pills{display:flex;gap:6px;margin-bottom:16px}
+.pill{flex:1;height:4px;border-radius:2px;background:var(--color-border-tertiary)}
+.pill.done{background:#1a237e}
+.pill.active{background:#5c6bc0}
+</style>
+
+<div class="page">
+
+<div class="header-card">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+    <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div>
+      <div style="font-size:10px;color:#9fa8da;letter-spacing:0.08em;text-transform:uppercase">Fractionalty</div>
+      <div style="font-size:14px;color:#fff;font-weight:500">Client Intake Form</div>
+    </div>
+  </div>
+  <h1>Tell us about the leadership role you need</h1>
+  <p style="margin-top:8px">We match you with a vetted fractional CXO within 72 hours. Be specific — the more you share, the better the match.</p>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="pbar" style="width:0%"></div></div>
+
+<div class="section-card">
+  <div class="section-title">Section 1 of 4 — Company basics</div>
+
+  <div class="q">
+    <label>Company name <span class="req">*</span></label>
+    <input type="text" placeholder="e.g. Growfast Technologies Pvt. Ltd." />
+  </div>
+
+  <div class="q">
+    <label>Your name <span class="req">*</span></label>
+    <input type="text" placeholder="Full name" />
+  </div>
+
+  <div class="q">
+    <label>Your role <span class="req">*</span></label>
+    <input type="text" placeholder="e.g. Co-Founder & CEO" />
+  </div>
+
+  <div class="q">
+    <label>Email address <span class="req">*</span></label>
+    <input type="email" placeholder="you@company.com" />
+  </div>
+
+  <div class="q">
+    <label>LinkedIn / company website</label>
+    <input type="text" placeholder="https://" />
+  </div>
+
+  <div class="q">
+    <label>Company stage <span class="req">*</span></label>
+    <div class="radio-group" id="stage-group">
+      <div class="radio-opt" onclick="sel(this,'stage-group')"><input type="radio" name="stage" /><span>Pre-revenue / idea stage</span></div>
+      <div class="radio-opt" onclick="sel(this,'stage-group')"><input type="radio" name="stage" /><span>Early revenue (under ₹1 Cr ARR)</span></div>
+      <div class="radio-opt" onclick="sel(this,'stage-group')"><input type="radio" name="stage" /><span>Growth stage (₹1–10 Cr ARR)</span></div>
+      <div class="radio-opt" onclick="sel(this,'stage-group')"><input type="radio" name="stage" /><span>Scale stage (₹10 Cr+ ARR)</span></div>
+      <div class="radio-opt" onclick="sel(this,'stage-group')"><input type="radio" name="stage" /><span>SMB / bootstrapped</span></div>
+    </div>
+  </div>
+
+  <div class="q">
+    <label>Funding status</label>
+    <select>
+      <option value="">Select one</option>
+      <option>Bootstrapped</option>
+      <option>Angel / pre-seed funded</option>
+      <option>Seed funded</option>
+      <option>Series A funded</option>
+      <option>Series B or beyond</option>
+      <option>PE-backed</option>
+    </select>
+  </div>
+</div>
+
+<div class="section-card">
+  <div class="section-title">Section 2 of 4 — The role you need</div>
+
+  <div class="q">
+    <label>Which fractional CXO function do you need? <span class="req">*</span></label>
+    <div class="radio-group" id="func-group">
+      <div class="radio-opt" onclick="sel(this,'func-group')"><input type="radio" name="func" /><span>Fractional CFO (Finance, fundraising, investor relations)</span></div>
+      <div class="radio-opt" onclick="sel(this,'func-group')"><input type="radio" name="func" /><span>Fractional CMO (Marketing, brand, growth, GTM)</span></div>
+      <div class="radio-opt" onclick="sel(this,'func-group')"><input type="radio" name="func" /><span>Fractional CHRO (People, culture, talent)</span></div>
+      <div class="radio-opt" onclick="sel(this,'func-group')"><input type="radio" name="func" /><span>Fractional CTO (Technology, product, data)</span></div>
+      <div class="radio-opt" onclick="sel(this,'func-group')"><input type="radio" name="func" /><span>Not sure — I need help scoping the role</span></div>
+    </div>
+  </div>
+
+  <div class="q" style="margin-top:1.25rem">
+    <label>In 2–3 sentences, what is the specific problem you need this CXO to solve? <span class="req">*</span></label>
+    <div class="hint">Be concrete. "We need a CFO" is too vague. "We're raising a Series A in 6 months and need someone who can clean up our cap table and build an investor-ready model" is what we need.</div>
+    <textarea placeholder="Describe the business problem, not the job description…"></textarea>
+    <div class="char-count">0 / 500</div>
+  </div>
+
+  <div class="q">
+    <label>What outcomes would tell you this engagement was successful?</label>
+    <div class="hint">e.g. "Fund raise closed", "New CRM implemented", "Hiring process built from scratch"</div>
+    <textarea placeholder="List 2–3 specific, measurable outcomes…" style="min-height:60px"></textarea>
+  </div>
+
+  <div class="q">
+    <label>How many days per week do you need this person? <span class="req">*</span></label>
+    <div class="radio-group" id="days-group">
+      <div class="radio-opt" onclick="sel(this,'days-group')"><input type="radio" name="days" /><span>1 day / week (strategic advisory)</span></div>
+      <div class="radio-opt" onclick="sel(this,'days-group')"><input type="radio" name="days" /><span>2 days / week (active leadership)</span></div>
+      <div class="radio-opt" onclick="sel(this,'days-group')"><input type="radio" name="days" /><span>3+ days / week (near full-time)</span></div>
+      <div class="radio-opt" onclick="sel(this,'days-group')"><input type="radio" name="days" /><span>Project-based (specific deliverable, defined timeline)</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-card">
+  <div class="section-title">Section 3 of 4 — Budget & timeline</div>
+
+  <div class="q">
+    <label>Monthly budget for this engagement <span class="req">*</span></label>
+    <div class="hint">All-in cost, billed through Fractionalty. Includes our platform fee.</div>
+    <div class="budget-grid" id="budget-group">
+      <div class="budget-opt" onclick="selBudget(this)"><div class="bval">Under ₹75K</div><div class="blbl">Early / bootstrapped</div></div>
+      <div class="budget-opt" onclick="selBudget(this)"><div class="bval">₹75K – ₹1.25L</div><div class="blbl">Standard fractional</div></div>
+      <div class="budget-opt" onclick="selBudget(this)"><div class="bval">₹1.25L – ₹2L</div><div class="blbl">Senior fractional</div></div>
+      <div class="budget-opt" onclick="selBudget(this)"><div class="bval">₹2L+</div><div class="blbl">High-impact / turnaround</div></div>
+    </div>
+  </div>
+
+  <div class="q" style="margin-top:1.25rem">
+    <label>How soon do you need someone to start? <span class="req">*</span></label>
+    <div class="radio-group" id="urgency-group">
+      <div class="radio-opt" onclick="sel(this,'urgency-group')"><input type="radio" name="urgency" /><span>Immediately (within 2 weeks)</span></div>
+      <div class="radio-opt" onclick="sel(this,'urgency-group')"><input type="radio" name="urgency" /><span>1 month</span></div>
+      <div class="radio-opt" onclick="sel(this,'urgency-group')"><input type="radio" name="urgency" /><span>2–3 months</span></div>
+      <div class="radio-opt" onclick="sel(this,'urgency-group')"><input type="radio" name="urgency" /><span>Exploring / no fixed timeline yet</span></div>
+    </div>
+  </div>
+
+  <div class="q">
+    <label>Expected duration of engagement</label>
+    <select>
+      <option value="">Select one</option>
+      <option>1–3 months (project / sprint)</option>
+      <option>3–6 months</option>
+      <option>6–12 months</option>
+      <option>Ongoing (no defined end)</option>
+    </select>
+  </div>
+</div>
+
+<div class="section-card">
+  <div class="section-title">Section 4 of 4 — Context & fit</div>
+
+  <div class="q">
+    <label>Have you worked with a fractional executive before?</label>
+    <div class="radio-group" id="prev-group">
+      <div class="radio-opt" onclick="sel(this,'prev-group')"><input type="radio" name="prev" /><span>Yes — it worked well</span></div>
+      <div class="radio-opt" onclick="sel(this,'prev-group')"><input type="radio" name="prev" /><span>Yes — mixed experience</span></div>
+      <div class="radio-opt" onclick="sel(this,'prev-group')"><input type="radio" name="prev" /><span>No — this would be our first time</span></div>
+    </div>
+  </div>
+
+  <div class="q" style="margin-top:1.25rem">
+    <label>Any non-negotiables for the CXO? (industry background, language, city, etc.)</label>
+    <textarea placeholder="e.g. Must have fintech experience. Prefer Bangalore-based. Hindi-speaking preferred." style="min-height:60px"></textarea>
+  </div>
+
+  <div class="q">
+    <label>How did you hear about Fractionalty?</label>
+    <select>
+      <option value="">Select one</option>
+      <option>LinkedIn (post or group)</option>
+      <option>VC / investor referral</option>
+      <option>Founder referral</option>
+      <option>Fractionalty team reached out</option>
+      <option>Event / conference</option>
+      <option>Other</option>
+    </select>
+  </div>
+
+  <div class="q">
+    <label>Anything else we should know before we match you?</label>
+    <textarea placeholder="Optional — share context that doesn't fit above…" style="min-height:54px"></textarea>
+  </div>
+</div>
+
+<div class="footer-card">
+  <div>
+    <div style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Ready to submit?</div>
+    <div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px">We'll reach out within 24 hours to schedule a 30-min intake call.</div>
+  </div>
+  <button class="submit-btn">Submit form</button>
+</div>
+
+<div style="text-align:center;padding:0.75rem 0">
+  <span style="font-size:11px;color:var(--color-text-tertiary)">Fractionalty · All responses are confidential · Not stored on Google servers</span>
+</div>
+
+</div>
+
+<script>
+function sel(el, groupId) {
+  document.querySelectorAll('#' + groupId + ' .radio-opt').forEach(o => { o.classList.remove('sel'); o.querySelector('input').checked = false; });
+  el.classList.add('sel');
+  el.querySelector('input').checked = true;
+  updateProgress();
+}
+function selBudget(el) {
+  document.querySelectorAll('#budget-group .budget-opt').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel');
+  updateProgress();
+}
+function updateProgress() {
+  const total = document.querySelectorAll('.radio-opt.sel, .check-opt.sel, .budget-opt.sel').length;
+  const pct = Math.min(100, Math.round(total / 6 * 100));
+  document.getElementById('pbar').style.width = pct + '%';
+}
+document.querySelectorAll('textarea').forEach(ta => {
+  ta.addEventListener('input', function() {
+    const cc = this.parentElement.querySelector('.char-count');
+    if (cc) cc.textContent = this.value.length + ' / 500';
+  });
+});
+</script>
